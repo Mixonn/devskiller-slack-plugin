@@ -3,6 +3,9 @@
  */
 package pl.allegro.devskiller
 
+import pl.allegro.devskiller.domain.assignments.AssignmentsStatistics
+import pl.allegro.devskiller.infrastructure.SlackAssignmentsNotifier
+
 class App {
     val greeting: String
         get() {
@@ -12,4 +15,7 @@ class App {
 
 fun main() {
     println(App().greeting)
+    val slackApp = com.slack.api.bolt.App()
+    val notifier = SlackAssignmentsNotifier(slackApp.client)
+    notifier.notifyAboutCurrentAssignments(AssignmentsStatistics("xdd"))
 }
