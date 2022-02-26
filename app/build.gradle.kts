@@ -19,6 +19,7 @@ repositories {
 val boltVersion = "1.20.0"
 val slf4jVersion = "1.7.36"
 val wiremockVersion = "2.32.0"
+val mockkVersion = "1.12.2"
 
 dependencies {
     implementation(platform(kotlin("bom")))
@@ -27,6 +28,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
     testImplementation(kotlin("test-junit5"))
+    testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("com.github.tomakehurst:wiremock-jre8:$wiremockVersion")
 }
 
