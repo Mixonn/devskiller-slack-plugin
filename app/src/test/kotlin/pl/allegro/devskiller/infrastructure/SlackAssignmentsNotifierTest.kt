@@ -7,7 +7,9 @@ import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
 import pl.allegro.devskiller.config.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assignments.AssignmentsStatistics
+import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
+import pl.allegro.devskiller.domain.time.FixedTimeProvider
+import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -15,19 +17,21 @@ import kotlin.test.assertTrue
 class SlackAssignmentsNotifierTest {
 
     private companion object {
+        private val twoDaysAgo = Instant.parse("2022-01-12T21:00:00.000Z")
+        private val now = Instant.parse("2022-01-14T21:00:00.000Z")
         private val slackConfig = SlackNotifierConfiguration("channel", "token")
     }
 
     private val slack = mockk<MethodsClient>(relaxed = true)
-    private val notifier = SlackAssignmentsNotifier(slack, slackConfig)
+    private val notifier = SlackAssignmentsNotifier(slack, slackConfig, FixedTimeProvider(now))
 
     @Test
     fun `should send notification to slack`() {
         // given
-        val assignmentStats = AssignmentsStatistics("xd")
+        val assignmentStats = AssignmentsToEvaluate(12, twoDaysAgo)
 
         // when
-        notifier.notifyAboutCurrentAssignments(assignmentStats)
+        notifier.notify(assignmentStats)
 
         // then should call slack api
         val request = slot<ChatPostMessageRequest>()
@@ -37,9 +41,12 @@ class SlackAssignmentsNotifierTest {
         // and request should contain certain specific parameters
         assertTrue(request.isCaptured)
         request.captured.also {
-            assertEquals(it.token, slackConfig.token)
-            assertEquals(it.channel, slackConfig.channel)
-            assertEquals(it.text, "pzdrr")
+            assertEquals(slackConfig.token, it.token)
+            assertEquals(slackConfig.channel, it.channel)
+            assertEquals(
+                "There are 12 assignments left to evaluate with the longest waiting candidate for 48 hours.",
+                it.text
+            )
         }
     }
 }

@@ -1,9 +1,6 @@
 package pl.allegro.devskiller.infrastructure
 
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
-import com.github.tomakehurst.wiremock.client.WireMock.and
-import com.github.tomakehurst.wiremock.client.WireMock.containing
-import com.github.tomakehurst.wiremock.client.WireMock.equalTo
 import com.github.tomakehurst.wiremock.client.WireMock.ok
 import com.github.tomakehurst.wiremock.client.WireMock.post
 import com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
@@ -16,7 +13,9 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.config.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assignments.AssignmentsStatistics
+import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
+import pl.allegro.devskiller.domain.time.FixedTimeProvider
+import java.time.Instant
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -24,13 +23,16 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
 
     private companion object {
         private const val okResponse = """{ "ok": true }"""
+        private const val errorResponse = """{ "ok": false }"""
         private const val postMessageUrl = "/chat.postMessage"
+        private val twoDaysAgo = Instant.parse("2022-01-12T21:00:00.000Z")
+        private val now = Instant.parse("2022-01-14T21:00:00.000Z")
         private val slackConfig = SlackNotifierConfiguration("channel", "token")
-        private val stats = AssignmentsStatistics("xd")
+        private val stats = AssignmentsToEvaluate(12, twoDaysAgo)
     }
 
     private val slack = App().client
-    private val notifier = SlackAssignmentsNotifier(slack, slackConfig)
+    private val notifier = SlackAssignmentsNotifier(slack, slackConfig, FixedTimeProvider(now))
 
     @BeforeTest
     fun setup() {
@@ -44,32 +46,20 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
         stubPostMessage(ok().withBody(okResponse))
 
         // when
-        notifier.notifyAboutCurrentAssignments(stats)
+        notifier.notify(stats)
 
         // then should send notification once
         val requestMatcher = postRequestedFor(urlEqualTo(postMessageUrl))
         wiremock.verify(1, requestMatcher)
-
-        // and notification should contain certain specific parameters
-        wiremock.verify(
-            requestMatcher
-                .withHeader("authorization", equalTo("Bearer ${slackConfig.token}"))
-                .withRequestBody(
-                    and(
-                        containing("channel=${slackConfig.channel}"),
-                        containing("text=pzdrr"),
-                    )
-                )
-        )
     }
 
     @TestFactory
     fun `should throw exception when slack returns an error`() =
         listOf(400, 500).map { slackResponseStatus ->
             dynamicTest("when slack responds with $slackResponseStatus") {
-                stubPostMessage(status(slackResponseStatus))
+                stubPostMessage(status(slackResponseStatus).withBody(errorResponse))
                 assertThrows<SlackApiException> {
-                    notifier.notifyAboutCurrentAssignments(stats)
+                    notifier.notify(stats)
                 }
             }
         }
