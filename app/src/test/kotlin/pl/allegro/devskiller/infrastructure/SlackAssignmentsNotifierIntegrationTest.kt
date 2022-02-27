@@ -10,13 +10,14 @@ import com.slack.api.bolt.App
 import com.slack.api.methods.SlackApiException
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertThrows
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.config.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
+import pl.allegro.devskiller.domain.assignments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
 
@@ -52,12 +53,26 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
                 val stats = AssignmentsToEvaluate(12, twoDaysAgo)
                 stubPostMessage(status(slackResponseStatus).withBody(errorResponse))
 
-                // expect
-                assertThrows<SlackApiException> {
-                    notifier.notify(stats)
-                }
+                // when
+                val notify = { notifier.notify(stats) }
+
+                // then
+                assertFailsWith(SlackApiException::class, notify)
             }
         }
+
+    @Test
+    fun `should throw exception when response was not ok`() {
+        // given
+        val stats = AssignmentsToEvaluate(12, twoDaysAgo)
+        stubPostMessage(ok().withBody(errorResponse))
+
+        // when
+        val notify = { notifier.notify(stats) }
+
+        // then
+        assertFailsWith(NotificationFailedException::class, notify)
+    }
 
     private fun stubAuth() =
         wiremock.stubFor(post("/auth.test").willReturn(ok().withBody(okResponse)))

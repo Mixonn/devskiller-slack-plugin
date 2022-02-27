@@ -5,6 +5,7 @@ import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import pl.allegro.devskiller.config.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assignments.AssignmentsNotifier
 import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
+import pl.allegro.devskiller.domain.assignments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.TimeProvider
 
 class SlackAssignmentsNotifier(
@@ -17,7 +18,10 @@ class SlackAssignmentsNotifier(
         val now = timeProvider.getTime()
         val message = assignmentsToEvaluate.getSummary(now)
         val request = buildRequest(message)
-        slackClient.chatPostMessage(request)
+        val response = slackClient.chatPostMessage(request)
+        if (!response.isOk) {
+            throw NotificationFailedException("Slack response was not ok due to the following error: ${response.error}")
+        }
     }
 
     private fun buildRequest(message: String) =
