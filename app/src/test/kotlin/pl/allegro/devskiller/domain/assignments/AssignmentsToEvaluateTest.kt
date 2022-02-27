@@ -21,10 +21,10 @@ class AssignmentsToEvaluateTest {
         almostTwoHoursAgo to 1,
         twoHoursAgo to 2,
         twoDaysAgo to 48
-    ).map { (eldest, expectedHours) ->
-        dynamicTest("returns $expectedHours when eldest is $eldest") {
+    ).map { (oldest, expectedHours) ->
+        dynamicTest("returns $expectedHours when oldest is $oldest") {
             // given
-            val assignments = AssignmentsToEvaluate(14, eldest)
+            val assignments = AssignmentsToEvaluate(14, oldest)
 
             // when
             val summary = assignments.getSummary(now)

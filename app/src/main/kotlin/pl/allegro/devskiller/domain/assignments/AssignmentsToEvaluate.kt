@@ -5,10 +5,10 @@ import java.time.Instant
 
 data class AssignmentsToEvaluate(
     val remaining: Int,
-    val eldest: Instant,
+    val oldest: Instant,
 ) {
     fun getSummary(now: Instant): String {
-        val longestWaitingHours = Duration.between(eldest, now).toHours()
+        val longestWaitingHours = Duration.between(oldest, now).toHours()
         return "There are $remaining assignments left to evaluate with the longest waiting candidate for $longestWaitingHours hours."
     }
 }

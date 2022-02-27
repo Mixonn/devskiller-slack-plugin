@@ -40,9 +40,8 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
         // when
         notifier.notify(stats)
 
-        // then should send notification once
-        val requestMatcher = postRequestedFor(urlEqualTo(postMessageUrl))
-        wiremock.verify(1, requestMatcher)
+        // then
+        verifyNotificationSent()
     }
 
     @TestFactory
@@ -79,4 +78,7 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
 
     private fun stubPostMessage(response: ResponseDefinitionBuilder) =
         wiremock.stubFor(post(postMessageUrl).willReturn(response))
+
+    private fun verifyNotificationSent(count: Int = 1) =
+        wiremock.verify(count, postRequestedFor(urlEqualTo(postMessageUrl)))
 }
