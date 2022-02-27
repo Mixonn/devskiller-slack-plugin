@@ -7,7 +7,7 @@ data class AssignmentsToEvaluate(
     val remaining: Int,
     val eldest: Instant,
 ) {
-    fun getMessage(now: Instant): String {
+    fun getSummary(now: Instant): String {
         val longestWaitingHours = Duration.between(eldest, now).toHours()
         return "There are $remaining assignments left to evaluate with the longest waiting candidate for $longestWaitingHours hours."
     }

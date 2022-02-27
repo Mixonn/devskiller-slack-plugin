@@ -15,24 +15,14 @@ import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.config.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
-import java.time.Instant
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
 
-    private companion object {
-        private const val okResponse = """{ "ok": true }"""
-        private const val errorResponse = """{ "ok": false }"""
-        private const val postMessageUrl = "/chat.postMessage"
-        private val twoDaysAgo = Instant.parse("2022-01-12T21:00:00.000Z")
-        private val now = Instant.parse("2022-01-14T21:00:00.000Z")
-        private val slackConfig = SlackNotifierConfiguration("channel", "token")
-        private val stats = AssignmentsToEvaluate(12, twoDaysAgo)
-    }
-
     private val slack = App().client
-    private val notifier = SlackAssignmentsNotifier(slack, slackConfig, FixedTimeProvider(now))
+    private val notifier = SlackNotifierConfiguration(slackProps)
+        .slackAssignmentsNotifier(FixedTimeProvider(now), slack)
 
     @BeforeTest
     fun setup() {
@@ -43,6 +33,7 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
     @Test
     fun `should send notification to slack`() {
         // given
+        val stats = AssignmentsToEvaluate(12, twoDaysAgo)
         stubPostMessage(ok().withBody(okResponse))
 
         // when
@@ -57,7 +48,11 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
     fun `should throw exception when slack returns an error`() =
         listOf(400, 500).map { slackResponseStatus ->
             dynamicTest("when slack responds with $slackResponseStatus") {
+                // given
+                val stats = AssignmentsToEvaluate(12, twoDaysAgo)
                 stubPostMessage(status(slackResponseStatus).withBody(errorResponse))
+
+                // expect
                 assertThrows<SlackApiException> {
                     notifier.notify(stats)
                 }

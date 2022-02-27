@@ -9,21 +9,15 @@ import io.mockk.verify
 import pl.allegro.devskiller.config.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
-import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class SlackAssignmentsNotifierTest {
 
-    private companion object {
-        private val twoDaysAgo = Instant.parse("2022-01-12T21:00:00.000Z")
-        private val now = Instant.parse("2022-01-14T21:00:00.000Z")
-        private val slackConfig = SlackNotifierConfiguration("channel", "token")
-    }
-
     private val slack = mockk<MethodsClient>(relaxed = true)
-    private val notifier = SlackAssignmentsNotifier(slack, slackConfig, FixedTimeProvider(now))
+    private val notifier = SlackNotifierConfiguration(slackProps)
+        .slackAssignmentsNotifier(FixedTimeProvider(now), slack)
 
     @Test
     fun `should send notification to slack`() {
@@ -34,19 +28,30 @@ class SlackAssignmentsNotifierTest {
         notifier.notify(assignmentStats)
 
         // then should call slack api
-        val request = slot<ChatPostMessageRequest>()
-        verify(exactly = 1) { slack.chatPostMessage(capture(request)) }
+        verify(exactly = 1) { slack.chatPostMessage(ofType(ChatPostMessageRequest::class)) }
         confirmVerified(slack)
+    }
 
-        // and request should contain certain specific parameters
+    @Test
+    fun `slack notification should contain specific parameter values`() {
+        // given
+        val assignmentStats = AssignmentsToEvaluate(12, twoDaysAgo)
+        val request = slot<ChatPostMessageRequest>()
+
+        // when
+        notifier.notify(assignmentStats)
+
+        // then request should contain certain specific parameters
+        verify { slack.chatPostMessage(capture(request)) }
         assertTrue(request.isCaptured)
         request.captured.also {
-            assertEquals(slackConfig.token, it.token)
-            assertEquals(slackConfig.channel, it.channel)
+            assertEquals(slackProps.token, it.token)
+            assertEquals(slackProps.channel, it.channel)
             assertEquals(
                 "There are 12 assignments left to evaluate with the longest waiting candidate for 48 hours.",
                 it.text
             )
         }
+
     }
 }
