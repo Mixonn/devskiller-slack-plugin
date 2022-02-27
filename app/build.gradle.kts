@@ -24,6 +24,7 @@ val mockkVersion = "1.12.2"
 dependencies {
     implementation(platform(kotlin("bom")))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
     implementation("com.slack.api:bolt:$boltVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
