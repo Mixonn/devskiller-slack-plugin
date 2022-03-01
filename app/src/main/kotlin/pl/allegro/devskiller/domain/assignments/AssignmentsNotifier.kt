@@ -1,7 +1,5 @@
 package pl.allegro.devskiller.domain.assignments
 
 interface AssignmentsNotifier {
-    fun notifyAboutCurrentAssignments(assignmentsStats: AssignmentsStatistics)
+    fun notify(assignmentsToEvaluate: AssignmentsToEvaluate)
 }
-
-data class AssignmentsStatistics(val statistics: String)
