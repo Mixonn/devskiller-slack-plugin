@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.domain.assignments
+package pl.allegro.devskiller.domain.assessments
 
 import java.time.Instant
 

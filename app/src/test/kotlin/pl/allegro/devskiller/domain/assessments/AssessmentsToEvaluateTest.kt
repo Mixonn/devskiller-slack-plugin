@@ -1,11 +1,11 @@
-package pl.allegro.devskiller.domain.assignments
+package pl.allegro.devskiller.domain.assessments
 
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import java.time.Instant
 import kotlin.test.assertEquals
 
-class AssignmentsToEvaluateTest {
+class AssessmentsToEvaluateTest {
 
     private companion object {
         private val now = Instant.parse("2022-01-23T10:23:00.000Z")
@@ -24,10 +24,10 @@ class AssignmentsToEvaluateTest {
     ).map { (oldest, expectedHours) ->
         dynamicTest("returns $expectedHours when oldest is $oldest") {
             // given
-            val assignments = AssignmentsToEvaluate(14, oldest)
+            val assessments = AssessmentsToEvaluate(14, oldest)
 
             // when
-            val summary = assignments.getSummary(now)
+            val summary = assessments.getSummary(now)
 
             // then
             assertEquals(buildSummary(hours = expectedHours), summary)
@@ -35,5 +35,5 @@ class AssignmentsToEvaluateTest {
     }
 
     private fun buildSummary(hours: Int) =
-        "There are 14 assignments left to evaluate with the longest waiting candidate for $hours hours."
+        "There are 14 assessments left to evaluate with the longest waiting candidate for $hours hours."
 }

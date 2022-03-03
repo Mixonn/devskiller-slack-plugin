@@ -1,11 +1,11 @@
-package pl.allegro.devskiller.config.assignments
+package pl.allegro.devskiller.config.assessments
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.net.http.HttpClient
-import pl.allegro.devskiller.domain.assignments.CandidateProvider
-import pl.allegro.devskiller.infrastructure.assignments.DevSkillerClient
+import pl.allegro.devskiller.domain.assessments.CandidateProvider
+import pl.allegro.devskiller.infrastructure.assessments.DevSkillerClient
 
 
 class CandidatesConfiguration {

@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.config.assignments
+package pl.allegro.devskiller.config.assessments
 
 data class DevSkillerConfiguration(
     val url: String,

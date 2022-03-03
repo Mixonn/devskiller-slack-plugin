@@ -3,20 +3,20 @@ package pl.allegro.devskiller.infrastructure
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import pl.allegro.devskiller.config.SlackNotifierProperties
-import pl.allegro.devskiller.domain.assignments.AssignmentsNotifier
-import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
-import pl.allegro.devskiller.domain.assignments.NotificationFailedException
+import pl.allegro.devskiller.domain.assessments.AssessmentsNotifier
+import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
+import pl.allegro.devskiller.domain.assessments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.TimeProvider
 
-class SlackAssignmentsNotifier(
+class SlackAssessmentsNotifier(
     private val slackClient: MethodsClient,
     private val slackConfig: SlackNotifierProperties,
     private val timeProvider: TimeProvider,
-) : AssignmentsNotifier {
+) : AssessmentsNotifier {
 
-    override fun notify(assignmentsToEvaluate: AssignmentsToEvaluate) {
+    override fun notify(assessmentsToEvaluate: AssessmentsToEvaluate) {
         val now = timeProvider.getTime()
-        val message = assignmentsToEvaluate.getSummary(now)
+        val message = assessmentsToEvaluate.getSummary(now)
         val request = buildRequest(message)
         val response = slackClient.chatPostMessage(request)
         if (!response.isOk) {

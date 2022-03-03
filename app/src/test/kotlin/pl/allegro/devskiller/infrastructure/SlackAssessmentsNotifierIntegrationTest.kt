@@ -12,18 +12,18 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.config.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
-import pl.allegro.devskiller.domain.assignments.NotificationFailedException
+import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
+import pl.allegro.devskiller.domain.assessments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
-class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
+class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
 
     private val slack = App().client
     private val notifier = SlackNotifierConfiguration(slackProps)
-        .slackAssignmentsNotifier(FixedTimeProvider(now), slack)
+        .slackAssessmentsNotifier(FixedTimeProvider(now), slack)
 
     @BeforeTest
     fun setup() {
@@ -34,7 +34,7 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
     @Test
     fun `should send notification to slack`() {
         // given
-        val stats = AssignmentsToEvaluate(12, twoDaysAgo)
+        val stats = AssessmentsToEvaluate(12, twoDaysAgo)
         stubPostMessage(ok().withBody(okResponse))
 
         // when
@@ -49,7 +49,7 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
         listOf(400, 500).map { slackResponseStatus ->
             dynamicTest("when slack responds with $slackResponseStatus") {
                 // given
-                val stats = AssignmentsToEvaluate(12, twoDaysAgo)
+                val stats = AssessmentsToEvaluate(12, twoDaysAgo)
                 stubPostMessage(status(slackResponseStatus).withBody(errorResponse))
 
                 // when
@@ -63,7 +63,7 @@ class SlackAssignmentsNotifierIntegrationTest : IntegrationTest() {
     @Test
     fun `should throw exception when response was not ok`() {
         // given
-        val stats = AssignmentsToEvaluate(12, twoDaysAgo)
+        val stats = AssessmentsToEvaluate(12, twoDaysAgo)
         stubPostMessage(ok().withBody(errorResponse))
 
         // when

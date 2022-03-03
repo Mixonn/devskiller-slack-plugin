@@ -1,7 +1,7 @@
 package pl.allegro.devskiller
 
-import pl.allegro.devskiller.config.assignments.CandidatesConfiguration
-import pl.allegro.devskiller.config.assignments.DevSkillerConfiguration
+import pl.allegro.devskiller.config.assessments.CandidatesConfiguration
+import pl.allegro.devskiller.config.assessments.DevSkillerConfiguration
 
 fun main() {
 //    val slackProperties = SlackNotifierProperties(

@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure.assignments
+package pl.allegro.devskiller.infrastructure.assessments
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -8,11 +8,11 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Instant
-import pl.allegro.devskiller.config.assignments.DevSkillerConfiguration
-import pl.allegro.devskiller.domain.assignments.Assessment
-import pl.allegro.devskiller.domain.assignments.Candidate
-import pl.allegro.devskiller.domain.assignments.CandidateProvider
-import pl.allegro.devskiller.domain.assignments.TestId
+import pl.allegro.devskiller.config.assessments.DevSkillerConfiguration
+import pl.allegro.devskiller.domain.assessments.Assessment
+import pl.allegro.devskiller.domain.assessments.Candidate
+import pl.allegro.devskiller.domain.assessments.CandidateProvider
+import pl.allegro.devskiller.domain.assessments.TestId
 
 class DevSkillerClient(
     private val httpClient: HttpClient,
