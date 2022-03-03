@@ -2,18 +2,14 @@ package pl.allegro.devskiller.domain.assessments
 
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import java.time.Instant
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.almostTwoHoursAgo
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.overTwoHoursAgo
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoDaysAgo
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoHoursAgo
 import kotlin.test.assertEquals
 
 class AssessmentsToEvaluateTest {
-
-    private companion object {
-        private val now = Instant.parse("2022-01-23T10:23:00.000Z")
-        private val overTwoHoursAgo = Instant.parse("2022-01-23T08:22:00.000Z")
-        private val twoHoursAgo = Instant.parse("2022-01-23T08:23:00.000Z")
-        private val almostTwoHoursAgo = Instant.parse("2022-01-23T08:24:00.000Z")
-        private val twoDaysAgo = Instant.parse("2022-01-21T10:23:00.000Z")
-    }
 
     @TestFactory
     fun `summary should have correctly calculated hours value`() = listOf(

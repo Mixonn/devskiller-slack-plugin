@@ -7,8 +7,6 @@ import java.time.Instant
 const val okResponse = """{ "ok": true }"""
 const val errorResponse = """{ "ok": false }"""
 const val postMessageUrl = "/chat.postMessage"
-val twoDaysAgo: Instant = Instant.parse("2022-01-12T21:00:00.000Z")
-val now: Instant = Instant.parse("2022-01-14T21:00:00.000Z")
 val slackProps = SlackNotifierProperties("channel", "token")
 
 fun buildPostMessageResponse(ok: Boolean, error: String? = null): ChatPostMessageResponse {

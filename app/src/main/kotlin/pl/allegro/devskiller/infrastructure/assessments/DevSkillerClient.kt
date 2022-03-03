@@ -1,6 +1,7 @@
 package pl.allegro.devskiller.infrastructure.assessments
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import java.net.URI
@@ -32,18 +33,20 @@ class DevSkillerClient(
             .build()
         val response: HttpResponse<String> = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
         val invitationsResponse = objectMapper.readTree(response.body())
-        val invitations = invitationsResponse.get("_embedded").get("invitations").toList()
-            .map { invitationNode ->
-                val invitationCandidate: InvitationCandidate = objectMapper.treeToValue(invitationNode.get("_embedded").get("candidate"))
-                val assessment: InvitationAssessment = objectMapper.treeToValue(invitationNode.get("_embedded").get("assessment"))
-                return@map Invitation(invitationCandidate, assessment)
-            }
+        val invitations = invitationsResponse.get("_embedded").get("invitations")
+            .map { invitationNode -> invitationNode.toInvitationObject() }
 
         val totalPages = invitationsResponse.get("page").get("totalPages").intValue()
         if (totalPages <= fromPage + 1) {
             return invitations
         }
         return invitations + getInvitations(countPerPage, fromPage + 1)
+    }
+
+    private fun JsonNode.toInvitationObject(): Invitation {
+        val invitationCandidate: InvitationCandidate = objectMapper.treeToValue(this.get("_embedded").get("candidate"))
+        val assessment: InvitationAssessment = objectMapper.treeToValue(this.get("_embedded").get("assessment"))
+        return Invitation(invitationCandidate, assessment)
     }
 
 

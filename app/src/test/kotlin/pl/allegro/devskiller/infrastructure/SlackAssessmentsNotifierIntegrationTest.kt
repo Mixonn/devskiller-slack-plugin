@@ -15,6 +15,8 @@ import pl.allegro.devskiller.config.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
 import pl.allegro.devskiller.domain.assessments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoDaysAgo
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
