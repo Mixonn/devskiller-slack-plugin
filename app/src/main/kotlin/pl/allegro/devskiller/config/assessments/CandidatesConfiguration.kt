@@ -15,10 +15,10 @@ class CandidatesConfiguration {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         .registerModule(JavaTimeModule())
 
-    fun devSkillerConfiguration() = DevSkillerConfiguration("someUrl", "token")
+    fun devSkillerConfiguration() = DevSkillerProperties("someUrl", "token")
 
     fun candidateProvider(
         httpClient: HttpClient,
-        devSkillerConfiguration: DevSkillerConfiguration,
+        devSkillerConfiguration: DevSkillerProperties,
     ): CandidateProvider = DevSkillerClient(httpClient, devSkillerConfiguration, objectMapper())
 }

@@ -9,7 +9,7 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Instant
-import pl.allegro.devskiller.config.assessments.DevSkillerConfiguration
+import pl.allegro.devskiller.config.assessments.DevSkillerProperties
 import pl.allegro.devskiller.domain.assessments.Assessment
 import pl.allegro.devskiller.domain.assessments.Candidate
 import pl.allegro.devskiller.domain.assessments.CandidateProvider
@@ -17,7 +17,7 @@ import pl.allegro.devskiller.domain.assessments.TestId
 
 class DevSkillerClient(
     private val httpClient: HttpClient,
-    private val devSkillerConfiguration: DevSkillerConfiguration,
+    private val devSkillerConfiguration: DevSkillerProperties,
     private val objectMapper: ObjectMapper
 ) : CandidateProvider {
     override fun getCandidatesToEvaluate(): List<Candidate> {
