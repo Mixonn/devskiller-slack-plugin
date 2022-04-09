@@ -15,8 +15,7 @@ class SlackAssessmentsNotifier(
 ) : AssessmentsNotifier {
 
     override fun notify(assessmentsToEvaluate: AssessmentsToEvaluate) {
-        val now = timeProvider.getTime()
-        val message = assessmentsToEvaluate.getSummary(now)
+        val message = assessmentsToEvaluate.getSummary(timeProvider.getTime())
         val request = buildRequest(message)
         val response = slackClient.chatPostMessage(request)
         if (!response.isOk) {

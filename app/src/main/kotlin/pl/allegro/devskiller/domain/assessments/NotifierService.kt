@@ -2,14 +2,13 @@ package pl.allegro.devskiller.domain.assessments
 
 class NotifierService(
     private val assessmentsNotifier: AssessmentsNotifier,
-    private val candidateProvider: CandidateProvider
+    private val candidateProvider: AssessmentsProvider
 ) {
     fun notifyAboutAssessmentsToCheck() {
-        val candidatesToEvaluate = candidateProvider.getCandidatesToEvaluate()
-        //todo: group by testsIds and send notification foreach group.
+        val candidatesToEvaluate = candidateProvider.getAssessmentsToEvaluate()
         val assessmentsToEvaluate = AssessmentsToEvaluate(
             candidatesToEvaluate.size,
-            candidatesToEvaluate.minByOrNull { it.latestTestFinishDate!! }!!.latestTestFinishDate!!
+            candidatesToEvaluate.minByOrNull { it.finishDate!! }!!.finishDate!!
         )
         assessmentsNotifier.notify(assessmentsToEvaluate)
     }

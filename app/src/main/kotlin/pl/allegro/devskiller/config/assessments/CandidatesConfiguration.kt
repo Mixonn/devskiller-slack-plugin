@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.net.http.HttpClient
-import pl.allegro.devskiller.domain.assessments.CandidateProvider
+import pl.allegro.devskiller.domain.assessments.AssessmentsProvider
 import pl.allegro.devskiller.infrastructure.assessments.DevSkillerClient
 
 
@@ -20,5 +20,5 @@ class CandidatesConfiguration {
     fun candidateProvider(
         httpClient: HttpClient,
         devSkillerConfiguration: DevSkillerProperties,
-    ): CandidateProvider = DevSkillerClient(httpClient, devSkillerConfiguration, objectMapper())
+    ): AssessmentsProvider = DevSkillerClient(httpClient, devSkillerConfiguration, objectMapper())
 }
