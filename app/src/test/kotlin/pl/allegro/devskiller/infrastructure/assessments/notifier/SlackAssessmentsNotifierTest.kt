@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.infrastructure.assessments.notifier
 
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
@@ -9,8 +9,8 @@ import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
 import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
-import pl.allegro.devskiller.domain.assessments.NotificationFailedException
+import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
+import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoDaysAgo
@@ -34,7 +34,7 @@ class SlackAssessmentsNotifierTest {
     @Test
     fun `should send notification to slack`() {
         // given
-        val assessments = AssessmentsToEvaluate(12, twoDaysAgo)
+        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
 
         // when
         notifier.notify(assessments)
@@ -47,7 +47,7 @@ class SlackAssessmentsNotifierTest {
     @Test
     fun `slack notification should contain specific parameter values`() {
         // given
-        val assessments = AssessmentsToEvaluate(12, twoDaysAgo)
+        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
         val request = slot<ChatPostMessageRequest>()
 
         // when
@@ -70,7 +70,7 @@ class SlackAssessmentsNotifierTest {
     fun `should throw exception when response was not ok`() {
         // given
         val error = "dummy_error"
-        val assessments = AssessmentsToEvaluate(12, twoDaysAgo)
+        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
         mockPostMessage(buildPostMessageResponse(ok = false, error = error))
 
         // when

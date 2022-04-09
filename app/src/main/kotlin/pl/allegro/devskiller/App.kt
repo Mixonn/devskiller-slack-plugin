@@ -3,7 +3,7 @@ package pl.allegro.devskiller
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.required
-import pl.allegro.devskiller.config.assessments.CandidatesConfiguration
+import pl.allegro.devskiller.config.assessments.AssessmentsConfiguration
 import pl.allegro.devskiller.config.assessments.DevSkillerProperties
 import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
 import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
@@ -17,15 +17,15 @@ fun main(args: Array<String>) {
     parser.parse(args)
 
     val devskillerProperties = DevSkillerProperties("https://api.devskiller.com/", devskillerToken)
-    val configuration = CandidatesConfiguration()
-    val candidateProvider = configuration.candidateProvider(
+    val configuration = AssessmentsConfiguration()
+    val assessmentsProvider = configuration.assessmentsProvider(
         httpClient = configuration.httpClient(),
-        devSkillerConfiguration = devskillerProperties
+        devSkillerProperties = devskillerProperties
     )
 
     val slackProperties = SlackNotifierProperties(slackChannel, slackToken)
     val slackConfig = SlackNotifierConfiguration(slackProperties)
     val notifier = slackConfig.slackAssessmentsNotifier()
-    val notifierService = NotifierService(notifier, candidateProvider)
+    val notifierService = NotifierService(notifier, assessmentsProvider)
     notifierService.notifyAboutAssessmentsToCheck()
 }

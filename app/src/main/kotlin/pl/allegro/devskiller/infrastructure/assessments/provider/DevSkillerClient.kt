@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.infrastructure.assessments.provider
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.JsonNode
@@ -10,55 +10,59 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Instant
 import pl.allegro.devskiller.config.assessments.DevSkillerProperties
-import pl.allegro.devskiller.domain.assessments.Assessment
-import pl.allegro.devskiller.domain.assessments.Candidate
-import pl.allegro.devskiller.domain.assessments.CandidateProvider
-import pl.allegro.devskiller.domain.assessments.TestId
+import pl.allegro.devskiller.domain.assessments.provider.Assessment
+import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
+import pl.allegro.devskiller.domain.assessments.provider.TestId
 
 class DevSkillerClient(
     private val httpClient: HttpClient,
     private val devSkillerConfiguration: DevSkillerProperties,
     private val objectMapper: ObjectMapper
-) : CandidateProvider {
-    override fun getCandidatesToEvaluate(): List<Candidate> {
-        val invitations = getInvitations(20)
-        return invitations.toCandidates()
+) : AssessmentsProvider {
+    override fun getAssessmentsToEvaluate(): List<Assessment> {
+        val invitations = getPendingInvitations(20)
+        return invitations.map { it.assessment.toAssessment() }
     }
 
-    private fun getInvitations(countPerPage: Int, fromPage: Int = 0): List<Invitation> {
+    private fun getPendingInvitations(countPerPage: Int, fromPage: Int = 0): List<Invitation> {
         val request = HttpRequest.newBuilder()
             .uri(URI("${devSkillerConfiguration.url}/invitations?status=IN_EVALUATION&count=$countPerPage&page=$fromPage"))
-            .header("Devskiller-Api-Key", devSkillerConfiguration.apiToken)
+            .header(DEVSKILLER_API_KEY_HEADER, devSkillerConfiguration.apiToken)
             .GET()
             .build()
         val response: HttpResponse<String> = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode() != 200) {
+            throw DevskillerHttpException(response.statusCode(), response.body())
+        }
         val invitationsResponse = objectMapper.readTree(response.body())
-        val invitations = invitationsResponse.get("_embedded").get("invitations")
-            .map { invitationNode -> invitationNode.toInvitationObject() }
+        val invitations = invitationsResponse.get("_embedded")
+            ?.get("invitations")
+            ?.map { invitationNode -> invitationNode.toInvitation() } ?: listOf()
 
-        val totalPages = invitationsResponse.get("page").get("totalPages").intValue()
+        val totalPages = invitationsResponse.get("page")
+            ?.get("totalPages")
+            ?.intValue() ?: throw AssertionError("There is no page structure in received document")
+
         if (totalPages <= fromPage + 1) {
             return invitations
         }
-        return invitations + getInvitations(countPerPage, fromPage + 1)
+        return invitations + getPendingInvitations(countPerPage, fromPage + 1)
     }
 
-    private fun JsonNode.toInvitationObject(): Invitation {
+    private fun JsonNode.toInvitation(): Invitation {
         val invitationCandidate: InvitationCandidate = objectMapper.treeToValue(this.get("_embedded").get("candidate"))
         val assessment: InvitationAssessment = objectMapper.treeToValue(this.get("_embedded").get("assessment"))
         return Invitation(invitationCandidate, assessment)
     }
 
-
-    private fun List<Invitation>.toCandidates() = this.groupBy( { it.candidate }, { it.assessment })
-        .map { (candidate, assessments) ->
-            return@map Candidate(
-                id = candidate.id,
-                assessments = assessments.map {
-                    Assessment(it.id, it.creationDate, it.startDate, it.finishDate, TestId(it.test.testId()))
-                }
-            )
-        }
+    private fun InvitationAssessment.toAssessment() =
+        Assessment(
+            id = id,
+            creationDate = creationDate,
+            testId = TestId(test.testId()),
+            startDate = startDate!!,
+            finishDate = finishDate!!
+        )
 
     data class Invitation(val candidate: InvitationCandidate, val assessment: InvitationAssessment)
     data class InvitationAssessment(
@@ -68,9 +72,18 @@ class DevSkillerClient(
         val finishDate: Instant?,
         @JsonProperty("_embedded") val test: InvitationTestWrapper
     )
+
     data class InvitationTestWrapper(val test: InvitationTest) {
         fun testId() = test.id
     }
+
     data class InvitationTest(val id: String)
     data class InvitationCandidate(val id: String)
+
+    companion object {
+        const val DEVSKILLER_API_KEY_HEADER = "Devskiller-Api-Key"
+    }
 }
+
+class DevskillerHttpException(val statusCode: Int, message: String)
+    : RuntimeException("Errror when calling devskiller client. Status code: $statusCode, message: $message")

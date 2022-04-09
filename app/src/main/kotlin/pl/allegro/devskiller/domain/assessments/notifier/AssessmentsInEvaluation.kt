@@ -1,9 +1,9 @@
-package pl.allegro.devskiller.domain.assessments
+package pl.allegro.devskiller.domain.assessments.notifier
 
 import java.time.Duration
 import java.time.Instant
 
-data class AssessmentsToEvaluate(
+data class AssessmentsInEvaluation(
     val remaining: Int,
     val oldest: Instant,
 ) {
