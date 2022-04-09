@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.domain.assessments
+package pl.allegro.devskiller.domain.assessments.notifier
 
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
@@ -20,7 +20,7 @@ class AssessmentsToEvaluateTest {
     ).map { (oldest, expectedHours) ->
         dynamicTest("returns $expectedHours when oldest is $oldest") {
             // given
-            val assessments = AssessmentsToEvaluate(14, oldest)
+            val assessments = AssessmentsInEvaluation(14, oldest)
 
             // when
             val summary = assessments.getSummary(now)

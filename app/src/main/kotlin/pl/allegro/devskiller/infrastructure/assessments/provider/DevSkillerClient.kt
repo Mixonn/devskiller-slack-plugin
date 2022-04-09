@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.infrastructure.assessments.provider
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.JsonNode
@@ -10,16 +10,16 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Instant
 import pl.allegro.devskiller.config.assessments.DevSkillerProperties
-import pl.allegro.devskiller.domain.assessments.AssessmentInEvaluation
-import pl.allegro.devskiller.domain.assessments.AssessmentsProvider
-import pl.allegro.devskiller.domain.assessments.TestId
+import pl.allegro.devskiller.domain.assessments.provider.Assessment
+import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
+import pl.allegro.devskiller.domain.assessments.provider.TestId
 
 class DevSkillerClient(
     private val httpClient: HttpClient,
     private val devSkillerConfiguration: DevSkillerProperties,
     private val objectMapper: ObjectMapper
 ) : AssessmentsProvider {
-    override fun getAssessmentsToEvaluate(): List<AssessmentInEvaluation> {
+    override fun getAssessmentsToEvaluate(): List<Assessment> {
         val invitations = getPendingInvitations(20)
         return invitations.map { it.assessment.toAssessment() }
     }
@@ -56,12 +56,12 @@ class DevSkillerClient(
     }
 
     private fun InvitationAssessment.toAssessment() =
-        AssessmentInEvaluation(
+        Assessment(
             id = id,
             creationDate = creationDate,
             testId = TestId(test.testId()),
-            startDate = startDate,
-            finishDate = finishDate
+            startDate = startDate!!,
+            finishDate = finishDate!!
         )
 
     data class Invitation(val candidate: InvitationCandidate, val assessment: InvitationAssessment)

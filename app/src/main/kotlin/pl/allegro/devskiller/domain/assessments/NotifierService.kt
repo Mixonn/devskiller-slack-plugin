@@ -1,15 +1,24 @@
 package pl.allegro.devskiller.domain.assessments
 
+import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsNotifier
+import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
+import pl.allegro.devskiller.domain.assessments.provider.Assessment
+import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
+
 class NotifierService(
     private val assessmentsNotifier: AssessmentsNotifier,
-    private val candidateProvider: AssessmentsProvider
+    private val assessmentsProvider: AssessmentsProvider
 ) {
     fun notifyAboutAssessmentsToCheck() {
-        val candidatesToEvaluate = candidateProvider.getAssessmentsToEvaluate()
-        val assessmentsToEvaluate = AssessmentsToEvaluate(
-            candidatesToEvaluate.size,
-            candidatesToEvaluate.minByOrNull { it.finishDate!! }!!.finishDate!!
-        )
-        assessmentsNotifier.notify(assessmentsToEvaluate)
+        val assessments = assessmentsProvider.getAssessmentsToEvaluate()
+        if (assessments.isEmpty()) {
+            return
+        }
+        assessmentsNotifier.notify(assessments.toStatistics())
     }
+
+    private fun List<Assessment>.toStatistics() = AssessmentsInEvaluation(
+        this.size,
+        this.minByOrNull { it.finishDate }!!.finishDate
+    )
 }

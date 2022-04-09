@@ -1,11 +1,11 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.infrastructure.assessments.notifier
 
 import com.slack.api.methods.response.chat.ChatPostMessageResponse
 import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
 
-const val okResponse = """{ "ok": true }"""
-const val errorResponse = """{ "ok": false }"""
-const val postMessageUrl = "/chat.postMessage"
+const val slackOkResponse = """{ "ok": true }"""
+const val slackErrorResponse = """{ "ok": false }"""
+const val slackPostMessageUrl = "/chat.postMessage"
 val slackProps = SlackNotifierProperties("channel", "token")
 
 fun buildPostMessageResponse(ok: Boolean, error: String? = null): ChatPostMessageResponse {

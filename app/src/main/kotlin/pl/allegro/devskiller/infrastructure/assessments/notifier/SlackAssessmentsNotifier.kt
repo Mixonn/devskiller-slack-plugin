@@ -1,11 +1,11 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.infrastructure.assessments.notifier
 
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
-import pl.allegro.devskiller.domain.assessments.AssessmentsNotifier
-import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
-import pl.allegro.devskiller.domain.assessments.NotificationFailedException
+import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsNotifier
+import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
+import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
 import pl.allegro.devskiller.domain.time.TimeProvider
 
 class SlackAssessmentsNotifier(
@@ -14,7 +14,7 @@ class SlackAssessmentsNotifier(
     private val timeProvider: TimeProvider,
 ) : AssessmentsNotifier {
 
-    override fun notify(assessmentsToEvaluate: AssessmentsToEvaluate) {
+    override fun notify(assessmentsToEvaluate: AssessmentsInEvaluation) {
         val message = assessmentsToEvaluate.getSummary(timeProvider.getTime())
         val request = buildRequest(message)
         val response = slackClient.chatPostMessage(request)

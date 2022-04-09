@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller
 
 import java.net.URI
 import java.net.http.HttpClient

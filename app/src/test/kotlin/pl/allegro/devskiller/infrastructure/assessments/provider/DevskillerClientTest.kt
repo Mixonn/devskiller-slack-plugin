@@ -1,40 +1,35 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.infrastructure.assessments.provider
 
 import io.mockk.every
 import io.mockk.mockk
-import java.io.File
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandler
 import java.time.Instant
 import org.junit.jupiter.api.assertThrows
-import pl.allegro.devskiller.config.assessments.CandidatesConfiguration
+import pl.allegro.devskiller.FakeHttpResponse
+import pl.allegro.devskiller.ResourceUtils
+import pl.allegro.devskiller.config.assessments.AssessmentsConfiguration
 import pl.allegro.devskiller.config.assessments.DevSkillerProperties
-import pl.allegro.devskiller.domain.assessments.AssessmentInEvaluation
-import pl.allegro.devskiller.domain.assessments.TestId
+import pl.allegro.devskiller.domain.assessments.provider.Assessment
+import pl.allegro.devskiller.domain.assessments.provider.TestId
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
-internal class DevSkillerClientTest {
+internal class DevskillerClientTest {
 
     private val httpClient = mockk<HttpClient>()
     private val devSkillerProperties = DevSkillerProperties("http://localhost:1234", "api-token")
-    private val objectMapper = CandidatesConfiguration().objectMapper()
+    private val objectMapper = AssessmentsConfiguration().objectMapper()
     private val devSkillerClient = DevSkillerClient(httpClient, devSkillerProperties, objectMapper)
-
-    private val classLoader = javaClass.classLoader
-
 
     @Test
     fun `should fetch candidates`() {
         // given
-        val jsonResponseWith2ElementsOnOnePage = "invitationsTotal2Size2Page0.json"
-        val responseFile = File(
-            classLoader.getResource(jsonResponseWith2ElementsOnOnePage)?.file
-                ?: throw java.lang.IllegalArgumentException("Cannot find $jsonResponseWith2ElementsOnOnePage file")
+        every { httpClient.send(ofType(HttpRequest::class), ofType(BodyHandler::class)) } returns FakeHttpResponse(
+            ResourceUtils.getResourceString("invitationsTotal2Size2Page0.json")
         )
-        every { httpClient.send(ofType(HttpRequest::class), ofType(BodyHandler::class)) } returns FakeHttpResponse(responseFile.readText())
 
         // when call devskiller client
         val result = devSkillerClient.getAssessmentsToEvaluate()
@@ -43,7 +38,7 @@ internal class DevSkillerClientTest {
         assertEquals(2, result.size)
 
         // and assessments with id 1 should be parsed correctly
-        val expectedAssessmentWithId1 = AssessmentInEvaluation(
+        val expectedAssessmentWithId1 = Assessment(
             id = "assesmentId1",
             creationDate = Instant.parse("2022-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
@@ -53,7 +48,7 @@ internal class DevSkillerClientTest {
         assertEquals(expectedAssessmentWithId1, result.first { it.id == "assesmentId1" })
 
         // and assessments with id 2 should be parsed correctly
-        val expectedAssessmentWithId2 = AssessmentInEvaluation(
+        val expectedAssessmentWithId2 = Assessment(
             id = "assesmentId2",
             creationDate = Instant.parse("2021-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
@@ -68,19 +63,11 @@ internal class DevSkillerClientTest {
         // given
         val jsonResponseWith1ElementFromFirstPage = "invitationsTotal2Size1Page0.json"
         val jsonResponseWith1ElementFromSecondPage = "invitationsTotal2Size1Page1.json"
-        val responseFirstPageFile = File(
-            classLoader.getResource(jsonResponseWith1ElementFromFirstPage)?.file
-                ?: throw java.lang.IllegalArgumentException("Cannot find $jsonResponseWith1ElementFromFirstPage file")
-        )
-        val responseSecondPageFile = File(
-            classLoader.getResource(jsonResponseWith1ElementFromSecondPage)?.file
-                ?: throw java.lang.IllegalArgumentException("Cannot find $jsonResponseWith1ElementFromSecondPage file")
-        )
         every { httpClient.send(match { it.uri().query.contains("page=0") }, ofType(BodyHandler::class)) } returns FakeHttpResponse(
-            responseFirstPageFile.readText()
+            ResourceUtils.getResourceString(jsonResponseWith1ElementFromFirstPage)
         )
         every { httpClient.send(match { it.uri().query.contains("page=1") }, ofType(BodyHandler::class)) } returns FakeHttpResponse(
-            responseSecondPageFile.readText()
+            ResourceUtils.getResourceString(jsonResponseWith1ElementFromSecondPage)
         )
 
         // when call devskiller client
@@ -90,7 +77,7 @@ internal class DevSkillerClientTest {
         assertEquals(2, result.size)
 
         // and assessments with id 1 should be parsed correctly
-        val expectedAssessmentWithId1 = AssessmentInEvaluation(
+        val expectedAssessmentWithId1 = Assessment(
             id = "assesmentId1",
             creationDate = Instant.parse("2022-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
@@ -100,7 +87,7 @@ internal class DevSkillerClientTest {
         assertEquals(expectedAssessmentWithId1, result.first { it.id == "assesmentId1" })
 
         // and assessments with id 2 should be parsed correctly
-        val expectedAssessmentWithId2 = AssessmentInEvaluation(
+        val expectedAssessmentWithId2 = Assessment(
             id = "assesmentId2",
             creationDate = Instant.parse("2021-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
