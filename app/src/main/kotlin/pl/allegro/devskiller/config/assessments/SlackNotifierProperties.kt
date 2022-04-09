@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.config
+package pl.allegro.devskiller.config.assessments
 
 data class SlackNotifierProperties(
     val channel: String,

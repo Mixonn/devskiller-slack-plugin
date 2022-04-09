@@ -1,18 +1,17 @@
 package pl.allegro.devskiller
 
-import java.time.Instant
-import pl.allegro.devskiller.config.SlackNotifierConfiguration
-import pl.allegro.devskiller.config.SlackNotifierProperties
+import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
 import pl.allegro.devskiller.config.assessments.CandidatesConfiguration
 import pl.allegro.devskiller.config.assessments.DevSkillerProperties
-import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
+import pl.allegro.devskiller.domain.assessments.NotifierService
 
 fun main() {
     val configuration = CandidatesConfiguration()
-    val candidates = configuration.candidateProvider(
+    val candidateProvider = configuration.candidateProvider(
         httpClient = configuration.httpClient(),
-        devSkillerConfiguration = DevSkillerProperties("https://api.devskiller.com/", "DevskillerTokenCHANGE")
-    ).getCandidatesToEvaluate()
+        devSkillerConfiguration = DevSkillerProperties("https://api.devskiller.com/", "CHANGE_ME")
+    )
 
     val slackProperties = SlackNotifierProperties(
         "C01DTCUUH55",
@@ -20,5 +19,6 @@ fun main() {
     )
     val slackConfig = SlackNotifierConfiguration(slackProperties)
     val notifier = slackConfig.slackAssessmentsNotifier()
-    notifier.notify(AssessmentsToEvaluate(candidates.size, candidates.minByOrNull { it.latestTestFinishDate!! }!!.latestTestFinishDate!!))
+    val notifierService = NotifierService(notifier, candidateProvider)
+    notifierService.notifyAboutAssessmentsToCheck()
 }

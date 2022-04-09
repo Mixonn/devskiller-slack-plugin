@@ -1,8 +1,7 @@
-package pl.allegro.devskiller.infrastructure
+package pl.allegro.devskiller.infrastructure.assessments
 
 import com.slack.api.methods.response.chat.ChatPostMessageResponse
-import pl.allegro.devskiller.config.SlackNotifierProperties
-import java.time.Instant
+import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
 
 const val okResponse = """{ "ok": true }"""
 const val errorResponse = """{ "ok": false }"""

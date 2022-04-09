@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure
+package pl.allegro.devskiller.infrastructure.assessments
 
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.client.WireMock.ok
@@ -11,7 +11,7 @@ import com.slack.api.methods.SlackApiException
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import pl.allegro.devskiller.IntegrationTest
-import pl.allegro.devskiller.config.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
 import pl.allegro.devskiller.domain.assessments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider

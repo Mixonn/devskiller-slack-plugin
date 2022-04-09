@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure
+package pl.allegro.devskiller.infrastructure.assessments
 
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
@@ -8,7 +8,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import pl.allegro.devskiller.config.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
 import pl.allegro.devskiller.domain.assessments.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider

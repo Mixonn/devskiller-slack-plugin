@@ -1,0 +1,6 @@
+devskiller:
+  api-token: 123
+
+groups:
+  jvm:
+    -

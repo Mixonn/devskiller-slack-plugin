@@ -1,8 +1,8 @@
-package pl.allegro.devskiller.infrastructure
+package pl.allegro.devskiller.infrastructure.assessments
 
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
-import pl.allegro.devskiller.config.SlackNotifierProperties
+import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assessments.AssessmentsNotifier
 import pl.allegro.devskiller.domain.assessments.AssessmentsToEvaluate
 import pl.allegro.devskiller.domain.assessments.NotificationFailedException

@@ -1,10 +1,10 @@
-package pl.allegro.devskiller.config
+package pl.allegro.devskiller.config.assessments
 
 import com.slack.api.bolt.App
 import com.slack.api.methods.MethodsClient
 import pl.allegro.devskiller.domain.time.NowTimeProvider
 import pl.allegro.devskiller.domain.time.TimeProvider
-import pl.allegro.devskiller.infrastructure.SlackAssessmentsNotifier
+import pl.allegro.devskiller.infrastructure.assessments.SlackAssessmentsNotifier
 
 class SlackNotifierConfiguration(private val properties: SlackNotifierProperties) {
 
