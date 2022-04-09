@@ -1,11 +1,7 @@
 package pl.allegro.devskiller.infrastructure.assessments.notifier
 
-import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.client.WireMock.ok
-import com.github.tomakehurst.wiremock.client.WireMock.post
-import com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import com.github.tomakehurst.wiremock.client.WireMock.status
-import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
 import com.slack.api.bolt.App
 import com.slack.api.methods.SlackApiException
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -29,21 +25,21 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
 
     @BeforeTest
     fun setup() {
-        slack.endpointUrlPrefix = "http://localhost:${wiremock.port}/"
-        stubAuth()
+        slack.injectWiremockUrl()
+        slackWiremock.stubAuth()
     }
 
     @Test
     fun `should send notification to slack`() {
         // given
         val stats = AssessmentsInEvaluation(12, twoDaysAgo)
-        stubPostMessage(ok().withBody(slackOkResponse))
+        slackWiremock.stubPostMessage()
 
         // when
         notifier.notify(stats)
 
         // then
-        verifyNotificationSent()
+        slackWiremock.verifyNotificationSent()
     }
 
     @TestFactory
@@ -52,7 +48,7 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
             dynamicTest("when slack responds with $slackResponseStatus") {
                 // given
                 val stats = AssessmentsInEvaluation(12, twoDaysAgo)
-                stubPostMessage(status(slackResponseStatus).withBody(slackErrorResponse))
+                slackWiremock.stubPostMessage(status(slackResponseStatus).withBody(slackErrorResponse))
 
                 // when
                 val notify = { notifier.notify(stats) }
@@ -66,7 +62,7 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
     fun `should throw exception when response was not ok`() {
         // given
         val stats = AssessmentsInEvaluation(12, twoDaysAgo)
-        stubPostMessage(ok().withBody(slackErrorResponse))
+        slackWiremock.stubPostMessage(ok().withBody(slackErrorResponse))
 
         // when
         val notify = { notifier.notify(stats) }
@@ -74,10 +70,4 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
         // then
         assertFailsWith(NotificationFailedException::class, notify)
     }
-
-    private fun stubPostMessage(response: ResponseDefinitionBuilder) =
-        wiremock.stubFor(post(slackPostMessageUrl).willReturn(response))
-
-    private fun verifyNotificationSent(count: Int = 1) =
-        wiremock.verify(count, postRequestedFor(urlEqualTo(slackPostMessageUrl)))
 }
