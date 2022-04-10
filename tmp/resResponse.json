@@ -1,0 +1,1133 @@
+[
+  {
+    "id": 174655,
+    "uuid": "98306e9e-d717-429a-8826-04b6a546e4ee",
+    "name": "Allegro - Java Developer Smoke Test",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 120,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 290402,
+    "uuid": "c663c69a-81c7-4064-8a13-2be2bf4bb1e7",
+    "name": "Java Showcase Test",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 1,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 290414,
+    "uuid": "a45ed1e3-4175-4794-a482-a18f24422b85",
+    "name": "Middle Java, Spring",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 320555,
+    "uuid": "8792cf1a-4213-4e53-92ef-6211389d14f4",
+    "name": "Allegro - Junior Software Engineer - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 42,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 320558,
+    "uuid": "779f18e8-faa7-4520-b02d-8e39b4f494d6",
+    "name": "Allegro - Senior Software Engineer - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 125,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 320561,
+    "uuid": "6ee98425-ebc1-4d9e-ae94-916899ac367f",
+    "name": "Allegro - Senior Software Engineer - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 44,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 320564,
+    "uuid": "85a2ffce-9e6b-4f6c-9b04-af1a65ef1d45",
+    "name": "Allegro - Software Engineer - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 245,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 320567,
+    "uuid": "588ea7b2-fe94-4fcb-8704-d036b2b19f60",
+    "name": "Allegro - Junior Software Engineer - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 61,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 358882,
+    "uuid": "b4832522-0fb0-43c9-bdc5-ed7fb97ac9f6",
+    "name": "Allegro - Team Leader - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 24,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 370465,
+    "uuid": "99eb498d-f35a-496a-bf9c-1878e8d800aa",
+    "name": "Allegro - Kontraktorzy SE - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 1,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 395566,
+    "uuid": "458e022c-5559-4408-8625-efe464ff953c",
+    "name": "Allegro - Software Engineer - Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 117,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 406095,
+    "uuid": "9d356995-fc05-4948-b0b6-e899b82e08e1",
+    "name": "Allegro - Junior Software Engineer - Toruń",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 406097,
+    "uuid": "d0cec054-bc1a-47d5-a0b7-59ce1a82690d",
+    "name": "Allegro - Software Engineer - Toruń",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 33,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 408571,
+    "uuid": "f947e0a4-c6d7-4eeb-9b74-891ba9f95ebd",
+    "name": "Allegro - Data Platform Engineer - Toruń",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 13,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 409981,
+    "uuid": "aae9f624-db48-40d7-8b47-3af187e1e314",
+    "name": "Software Engineer Intern 2020",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 3,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 412903,
+    "uuid": "676b1aa5-06be-4781-b4a1-ee461a02f150",
+    "name": "Software Engineer Intern 2020 - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 294,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 412906,
+    "uuid": "4af21c08-4f46-400a-9663-dfd1efad43e6",
+    "name": "Software Engineer Intern 2020 - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 84,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 412912,
+    "uuid": "96d90fa9-c7c5-492e-b6f2-300f22b97916",
+    "name": "Software Engineer Intern 2020 - Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 125,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 412915,
+    "uuid": "e5b12db7-c052-4465-848a-d92cbbc31bbf",
+    "name": "Software Engineer Intern 2020 - Toruń",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 55,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 412918,
+    "uuid": "456778a4-c1b7-4603-a82f-019727b262c9",
+    "name": "Software Engineer Intern 2020 - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 96,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 414085,
+    "uuid": "b2ece16b-daec-43fe-b49a-8b0e3347563d",
+    "name": "Software Engineer Intern 2020 - Infrastructure Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 68,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 433777,
+    "uuid": "8ce1a7b2-c5a1-4831-b0d7-a024a1a88610",
+    "name": "Allegro - Software Engineer (.NET) - SANDBOX",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 435348,
+    "uuid": "d469633f-0280-4a26-9fae-1d2a117d3574",
+    "name": "Allegro - Front-end software engineer - DRAFT!",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 436373,
+    "uuid": "4bfedc5d-2b86-4980-8696-9e233dacc5ae",
+    "name": "Allegro - Junior Integration Engineer - Poznań, Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 25,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 439000,
+    "uuid": "0b945bc1-ae15-4812-9c56-3783e35e8859",
+    "name": "dhs SQL (test)",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 439010,
+    "uuid": "a55aed1b-49a6-4ce0-8ee8-2507b73026b3",
+    "name": "Untitled test",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 439026,
+    "uuid": "21b708d0-a049-4eb7-9fe6-715c39fa30c9",
+    "name": "Allegro - Software Engineer (.NET) - Warszawa (final)",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 122,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 443125,
+    "uuid": "e777a209-3822-44bd-88e1-04143b8f6a34",
+    "name": "Allegro - Junior Software Engineer (.NET) - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 448950,
+    "uuid": "1832da90-0408-4593-bd87-667d33500b01",
+    "name": "Allegro - Senior Software Engineer (.NET) - Warszawa (final)",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 122,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 457215,
+    "uuid": "ea2a80aa-290b-4246-b356-4d23c89c7f30",
+    "name": "Allegro - Front-end Software Engineer - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 27,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 464351,
+    "uuid": "603e8b17-4594-4efe-90c4-e04b77798448",
+    "name": "Allegro - Software Enginner (Python) - Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 134,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 7
+  },
+  {
+    "id": 464720,
+    "uuid": "e296bf6b-7354-4120-84f3-7b20b7b83796",
+    "name": "Allegro - IT Team Leader - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 49,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 468040,
+    "uuid": "e942373b-ed6e-425f-9766-1602f3444190",
+    "name": "Allegro - Team Leader kontraktor - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 468325,
+    "uuid": "76724ed3-dc97-4022-b646-bc5de957a467",
+    "name": "Allegro - IT Team Leader - Toruń, Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 5,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 470400,
+    "uuid": "b60d6f1c-9ac1-404e-82d3-7b791a7e9400",
+    "name": "Allegro - Android Engineer",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 27,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 7
+  },
+  {
+    "id": 479914,
+    "uuid": "9912c77d-7d31-4de0-81ef-755d30d1548c",
+    "name": "Allegro - Front-end Software Engineer - Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 128,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 479916,
+    "uuid": "faa72528-70ba-4028-98af-0a05959a15fe",
+    "name": "Allegro - Front-end Software Engineer - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 296,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 480869,
+    "uuid": "9302cce4-684e-4e9d-86ab-895325d0ab74",
+    "name": "Allegro - iOS Engineer",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 8,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 482609,
+    "uuid": "861f2de0-d634-4254-b3cb-b67d2af8abeb",
+    "name": "Allegro – Big Data Engineer",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 2,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 484270,
+    "uuid": "0902faff-b2b4-40a5-b6fb-b59f80a62138",
+    "name": "Allegro - Data Engineer (.NET) - SANDBOX",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 1,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 485299,
+    "uuid": "57f5a15d-23f2-4913-9dbc-3edd71497acb",
+    "name": "Allegro - iOS Engineer - Poznań, Kraków, Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 77,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 7
+  },
+  {
+    "id": 486040,
+    "uuid": "e9808be7-7940-4a5e-acd2-7135486b88c3",
+    "name": "Middle SQL, Python",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 487029,
+    "uuid": "4013e82f-cc5c-46b9-b6be-0e306f3f904b",
+    "name": "Allegro - Software Engineer - Poznań, Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 7,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 487431,
+    "uuid": "12b3986b-d631-4215-93f3-1fbfa0f428aa",
+    "name": "Allegro - Kontraktorzy SE Warszawa - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 6,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 487671,
+    "uuid": "5e78dccf-b9fe-48fd-8a75-f9ba42914a46",
+    "name": "DHS Multichoice Junior",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 488451,
+    "uuid": "ab7a3d98-e7cf-4b4a-9b5f-29b20e5cb6d3",
+    "name": "Allegro - Software Engineer (Big Data Team) - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 28,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 7
+  },
+  {
+    "id": 488799,
+    "uuid": "b94b21db-f83a-40a3-bb5d-adea312f5293",
+    "name": "Allegro - Senior Data Engineer (.NET) - Warszawa",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 8,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 489168,
+    "uuid": "238e06aa-428a-428c-80af-792f2ff32af9",
+    "name": "Data Scientist @ Allegro",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 192,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 3
+  },
+  {
+    "id": 491011,
+    "uuid": "f26450d9-abd0-41ca-96f2-84e8961a944d",
+    "name": "Allegro – Big Data Engineer - Warszawa, Kraków, Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 41,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 7
+  },
+  {
+    "id": 491749,
+    "uuid": "b8078e66-582b-4ded-905d-41de04422b6b",
+    "name": "Allegro - Software Engineer - Kontraktor (CEX Automation) - Poznań",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 10,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 492418,
+    "uuid": "71458b8a-433b-4690-a483-7819fe0c6829",
+    "name": "Analyst @ Allegro",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 545,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "72d5c76b-92be-47b2-90d5-dd1f18cd17a4",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 7
+  },
+  {
+    "id": 493913,
+    "uuid": "07204718-a4fc-49a6-bcf6-4b2b87acec99",
+    "name": "Software Engineer Backend",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 18,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 494704,
+    "uuid": "4e09c525-42c6-4892-b998-4a095c2d63e2",
+    "name": "Allegro - Front-end Software Engineer - Kraków",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 37,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 494969,
+    "uuid": "3c430313-81a5-493d-a092-53b28d1deae4",
+    "name": "test slack",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 2,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 496291,
+    "uuid": "2671e157-b1cb-40e6-9c7b-bfee958226d9",
+    "name": "RPA Developer",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 21,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 498532,
+    "uuid": "7e6b86bd-695c-4674-9799-e09dffb60c49",
+    "name": "Allegro – Big Data Engineer - Kraków REF2442G",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 3,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 498850,
+    "uuid": "8d0e697f-83c6-4284-9220-57165090cc67",
+    "name": "Team Leader .NET - REF2498R",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 8,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 502563,
+    "uuid": "b3eb0cad-de04-4dd9-9088-313237e862f9",
+    "name": "Staż - Software",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 2120,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "d0243b4c-811f-4510-bb5c-b8bcdda99b2e",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 4
+  },
+  {
+    "id": 503494,
+    "uuid": "d8078d8d-f4e5-4f71-92ff-1fddda92e5c8",
+    "name": "Staż - DataScientist",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 152,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "97ee027f-e0f5-453a-8f94-ab43dea090e5",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 503495,
+    "uuid": "272caacc-575c-4b61-8289-352812758981",
+    "name": "Staż - analytical + eng",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 3458,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "be43d10d-47b6-4aa7-9ce1-141a0091e7e0",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 4
+  },
+  {
+    "id": 504067,
+    "uuid": "8e216c70-7e62-4379-b40b-f89a0eff9e85",
+    "name": "Staż - UX",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 207,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "8b106be9-26c4-422d-9efd-b4352e0f0212",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 504071,
+    "uuid": "06d704f4-e99a-4574-981e-fa437b01bef1",
+    "name": "Hacknarok JS",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 5,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "85b5391c-6f85-407a-99e3-2f218c51aa13",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 504140,
+    "uuid": "683cefcc-cc7a-4a9a-bc71-a7528d30c5d8",
+    "name": "Staż - DevOps",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 67,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "44201e96-b653-4edc-8cb5-ad95a8cf3545",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 4
+  },
+  {
+    "id": 504144,
+    "uuid": "da5298b6-8e6a-4679-9757-b226025e3987",
+    "name": "Hacknarok Python",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 4,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "85b5391c-6f85-407a-99e3-2f218c51aa13",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 504145,
+    "uuid": "958d71ca-7fb4-4bff-965b-275ed25d8185",
+    "name": "Hacknarok Java",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 11,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "85b5391c-6f85-407a-99e3-2f218c51aa13",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 504825,
+    "uuid": "bca92416-fd73-447c-9d7b-dcc953e386ed",
+    "name": "Data Analyst @ Allegro Pay",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 20,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 504828,
+    "uuid": "69ab8437-75a0-46eb-89ff-7720b060a8f1",
+    "name": "GENERAL DATA @ Allegro Pay",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 79,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 505512,
+    "uuid": "bef3d39c-6050-4286-af55-b2f353270e2b",
+    "name": "Staż Analyst @ Allegro",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 54,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "fc6cf163-e558-477c-afd4-6a05e11275de",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 507109,
+    "uuid": "fc1a8d2a-a3f0-4862-a2fc-bebd3f0f6cac",
+    "name": "Allegro - Software Engineer (.NET) - Warszawa (final) (REF2427H)",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 106,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 509908,
+    "uuid": "78aeb0cf-c689-45a7-8ba8-968af7b3c9e7",
+    "name": "Allegro - Front-end Software Engineer - Warszawa REF2759Z",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 40,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 511704,
+    "uuid": "adf5d022-706a-4291-8c26-7588250381ed",
+    "name": "Test Automation Engineer",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 61,
+    "sharedWithTeams": true,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 514034,
+    "uuid": "3ac4ffb9-7bed-4e10-86a5-68fa7e95b3e9",
+    "name": "Software Engineer Backend ENG",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 523,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 514899,
+    "uuid": "2946df65-52ec-4dd7-84fd-cd80f703f8a5",
+    "name": "Research Engineer - live - nearest neighbors",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 6,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 520042,
+    "uuid": "7d2cd1e9-a923-4449-b9a0-172d3414e140",
+    "name": "Allegro - Android Engineer ENG",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 8,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 521344,
+    "uuid": "35ee581b-bce1-450c-936b-b6d9f120caa5",
+    "name": "Refactor RE live WIP",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 2,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 521352,
+    "uuid": "d33c9957-bf0f-4210-913d-05ab677d91c2",
+    "name": "RE Live - Autocrop Image - WIP",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 2,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 521411,
+    "uuid": "0ab901c7-0742-480e-a4a2-5f2b68d3defb",
+    "name": "RE Live - Linear Regression - WIP",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 3,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 521416,
+    "uuid": "2d0dd841-206b-4975-ab4e-1cadd7ebbee0",
+    "name": "[Test] DS",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 7,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 523045,
+    "uuid": "6dfc25ea-234d-4ed0-b212-f3c24f768cd3",
+    "name": "Staż - Junior Product Manager Tech",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 47,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "8b106be9-26c4-422d-9efd-b4352e0f0212",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 523490,
+    "uuid": "a6247381-6cde-4141-963b-28e8030001d9",
+    "name": "RE Live - Cross Validation - WIP",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 1,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 523496,
+    "uuid": "c380c312-5c9b-42cd-a413-462fea150d93",
+    "name": "Staż - C#",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 57,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "d0243b4c-811f-4510-bb5c-b8bcdda99b2e",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 4
+  },
+  {
+    "id": 523740,
+    "uuid": "003e07e3-e858-427c-aaf2-02e3664bba36",
+    "name": "Allegro - Front-end Software Engineer - 2022 ENG",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 78,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": "9528f40d-ba5d-415c-aef0-c519e9f62b01",
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 3
+  },
+  {
+    "id": 524279,
+    "uuid": "996bbedf-92ea-43d7-851a-3dea9c72e824",
+    "name": "MLR Research Engineer Test",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 23,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": 3
+  },
+  {
+    "id": 525795,
+    "uuid": "7c170fc1-b2c1-4a32-a982-105b79541f38",
+    "name": "Allegro - Mobile Software Engineer (iOS) ENG",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 6,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 528496,
+    "uuid": "2611b736-ebf4-44b8-80b0-b3cdda9a7930",
+    "name": "RE Live Coding",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 1,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 529826,
+    "uuid": "0ea2fd8a-a44d-4c92-b4a3-00db2fbf9283",
+    "name": "Junior SQL-DS",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 0,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  },
+  {
+    "id": 530433,
+    "uuid": "fd645291-c661-4dc5-9784-514eca210d47",
+    "name": "DS - SQL",
+    "teamBusinessId": "beb98e72-14ec-45ec-8f6f-cf2e4324344e",
+    "candidatesCount": 1,
+    "sharedWithTeams": false,
+    "mailTemplates": {
+      "invitationUuid": null,
+      "reminderUuid": null
+    },
+    "tokenLifetimeInDays": null
+  }
+]

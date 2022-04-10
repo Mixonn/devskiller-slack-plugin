@@ -14,9 +14,23 @@ fun main(args: Array<String>) {
     val devskillerToken by parser.option(ArgType.String).required()
     val slackToken by parser.option(ArgType.String).required()
     val slackChannel by parser.option(ArgType.String).required()
+    val testGroupsString by parser.option(
+        ArgType.String,
+        fullName = "testGroups",
+        description = """Pass devskiller test groups. Each group is separated by ';'. Every test id is separated by ','.
+            |First element is interpreted as group name.
+            |Example:
+            |--testGroups java,109jc3v3,d232f,md029d;python,d02909
+            |will create 2 groups, one Java with ids 109jc3v3,d232f,md029d, 
+            |and second "Python" group with test id d02909
+        """.trimMargin()
+    ).required()
     parser.parse(args)
 
-    val devskillerProperties = DevSkillerProperties("https://api.devskiller.com/", devskillerToken)
+    val parsedTestGroup = testGroupsString.split(";").map { groupString ->
+        DevSkillerProperties.TestGroup.fromString(groupString)
+    }
+    val devskillerProperties = DevSkillerProperties("https://api.devskiller.com/", devskillerToken, parsedTestGroup)
     val configuration = DevskillerConfiguration(devskillerProperties)
     val assessmentsProvider = configuration.assessmentsProvider()
 
