@@ -10,10 +10,11 @@ import pl.allegro.devskiller.config.assessments.slack.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assessments.NotifierService
 
 fun main(args: Array<String>) {
+    val devskillerToken: String = System.getenv("DEVSKILLER_TOKEN")!!
+    val slackToken: String = System.getenv("SLACK_TOKEN")!!
+
     val parser = ArgParser("<this_executable>")
     val slackChannel by parser.option(ArgType.String).required()
-    val slackToken by parser.option(ArgType.String).required()
-    val devskillerToken by parser.option(ArgType.String).required()
     parser.parse(args)
 
     val devskillerProperties = DevSkillerProperties("https://api.devskiller.com/", devskillerToken)

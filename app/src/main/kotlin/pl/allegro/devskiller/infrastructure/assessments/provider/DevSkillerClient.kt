@@ -26,7 +26,7 @@ class DevSkillerClient(
 
     private fun getPendingInvitations(countPerPage: Int, fromPage: Int = 0): List<Invitation> {
         val request = HttpRequest.newBuilder()
-            .uri(URI("${devSkillerConfiguration.url}/invitations?status=IN_EVALUATION&count=$countPerPage&page=$fromPage"))
+            .uri(URI("${devSkillerConfiguration.url}/invitations?status=AUTO_ASSESSMENT_READY&count=$countPerPage&page=$fromPage"))
             .header(DEVSKILLER_API_KEY_HEADER, devSkillerConfiguration.apiToken)
             .GET()
             .build()
