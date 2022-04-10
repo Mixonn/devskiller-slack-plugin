@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.config.assessments
+package pl.allegro.devskiller.config.assessments.devskiller
 
 data class DevSkillerProperties(
     var url: String,

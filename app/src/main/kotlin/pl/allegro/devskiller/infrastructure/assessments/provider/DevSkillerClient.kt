@@ -9,7 +9,7 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Instant
-import pl.allegro.devskiller.config.assessments.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
 import pl.allegro.devskiller.domain.assessments.provider.Assessment
 import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
 import pl.allegro.devskiller.domain.assessments.provider.TestId
@@ -50,35 +50,29 @@ class DevSkillerClient(
     }
 
     private fun JsonNode.toInvitation(): Invitation {
-        val invitationCandidate: InvitationCandidate = objectMapper.treeToValue(this.get("_embedded").get("candidate"))
         val assessment: InvitationAssessment = objectMapper.treeToValue(this.get("_embedded").get("assessment"))
-        return Invitation(invitationCandidate, assessment)
+        return Invitation(assessment)
     }
 
     private fun InvitationAssessment.toAssessment() =
         Assessment(
             id = id,
-            creationDate = creationDate,
             testId = TestId(test.testId()),
-            startDate = startDate!!,
             finishDate = finishDate!!
         )
 
-    data class Invitation(val candidate: InvitationCandidate, val assessment: InvitationAssessment)
-    data class InvitationAssessment(
+    private data class Invitation(val assessment: InvitationAssessment)
+    private data class InvitationAssessment(
         val id: String,
-        val creationDate: Instant,
-        val startDate: Instant?,
         val finishDate: Instant?,
         @JsonProperty("_embedded") val test: InvitationTestWrapper
     )
 
-    data class InvitationTestWrapper(val test: InvitationTest) {
+    private data class InvitationTestWrapper(val test: InvitationTest) {
         fun testId() = test.id
     }
 
-    data class InvitationTest(val id: String)
-    data class InvitationCandidate(val id: String)
+    private data class InvitationTest(val id: String)
 
     companion object {
         const val DEVSKILLER_API_KEY_HEADER = "Devskiller-Api-Key"
@@ -86,4 +80,4 @@ class DevSkillerClient(
 }
 
 class DevskillerHttpException(val statusCode: Int, message: String)
-    : RuntimeException("Errror when calling devskiller client. Status code: $statusCode, message: $message")
+    : RuntimeException("Error when calling devskiller client. Status code: $statusCode, message: $message")

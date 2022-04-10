@@ -9,8 +9,8 @@ import java.time.Instant
 import org.junit.jupiter.api.assertThrows
 import pl.allegro.devskiller.FakeHttpResponse
 import pl.allegro.devskiller.ResourceUtils
-import pl.allegro.devskiller.config.assessments.AssessmentsConfiguration
-import pl.allegro.devskiller.config.assessments.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
 import pl.allegro.devskiller.domain.assessments.provider.Assessment
 import pl.allegro.devskiller.domain.assessments.provider.TestId
 import kotlin.test.Test
@@ -21,8 +21,7 @@ internal class DevskillerClientTest {
 
     private val httpClient = mockk<HttpClient>()
     private val devSkillerProperties = DevSkillerProperties("http://localhost:1234", "api-token")
-    private val objectMapper = AssessmentsConfiguration().objectMapper()
-    private val devSkillerClient = DevSkillerClient(httpClient, devSkillerProperties, objectMapper)
+    private val devSkillerClient = DevskillerConfiguration(devSkillerProperties).assessmentsProvider(httpClient)
 
     @Test
     fun `should fetch candidates`() {
@@ -40,9 +39,7 @@ internal class DevskillerClientTest {
         // and assessments with id 1 should be parsed correctly
         val expectedAssessmentWithId1 = Assessment(
             id = "assesmentId1",
-            creationDate = Instant.parse("2022-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2022-04-08T21:28:25Z"),
             finishDate = Instant.parse("2022-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId1, result.first { it.id == "assesmentId1" })
@@ -50,9 +47,7 @@ internal class DevskillerClientTest {
         // and assessments with id 2 should be parsed correctly
         val expectedAssessmentWithId2 = Assessment(
             id = "assesmentId2",
-            creationDate = Instant.parse("2021-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2021-04-08T21:28:25Z"),
             finishDate = Instant.parse("2021-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId2, result.first { it.id == "assesmentId2" })
@@ -79,9 +74,7 @@ internal class DevskillerClientTest {
         // and assessments with id 1 should be parsed correctly
         val expectedAssessmentWithId1 = Assessment(
             id = "assesmentId1",
-            creationDate = Instant.parse("2022-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2022-04-08T21:28:25Z"),
             finishDate = Instant.parse("2022-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId1, result.first { it.id == "assesmentId1" })
@@ -89,9 +82,7 @@ internal class DevskillerClientTest {
         // and assessments with id 2 should be parsed correctly
         val expectedAssessmentWithId2 = Assessment(
             id = "assesmentId2",
-            creationDate = Instant.parse("2021-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2021-04-08T21:28:25Z"),
             finishDate = Instant.parse("2021-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId2, result.first { it.id == "assesmentId2" })

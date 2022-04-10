@@ -8,7 +8,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
