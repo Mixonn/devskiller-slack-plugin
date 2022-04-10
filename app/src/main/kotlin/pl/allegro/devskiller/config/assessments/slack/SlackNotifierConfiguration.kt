@@ -1,22 +1,22 @@
-package pl.allegro.devskiller.config
+package pl.allegro.devskiller.config.assessments.slack
 
 import com.slack.api.bolt.App
 import com.slack.api.methods.MethodsClient
 import pl.allegro.devskiller.domain.time.NowTimeProvider
 import pl.allegro.devskiller.domain.time.TimeProvider
-import pl.allegro.devskiller.infrastructure.SlackAssignmentsNotifier
+import pl.allegro.devskiller.infrastructure.assessments.notifier.SlackAssessmentsNotifier
 
 class SlackNotifierConfiguration(private val properties: SlackNotifierProperties) {
 
-    fun slackAssignmentsNotifier(
+    fun slackAssessmentsNotifier(
         timeProvider: TimeProvider = NowTimeProvider()
-    ): SlackAssignmentsNotifier {
+    ): SlackAssessmentsNotifier {
         val slackApp = App()
-        return slackAssignmentsNotifier(timeProvider, slackApp.client)
+        return slackAssessmentsNotifier(timeProvider, slackApp.client)
     }
 
-    fun slackAssignmentsNotifier(
+    fun slackAssessmentsNotifier(
         timeProvider: TimeProvider,
         slackMethodsClient: MethodsClient,
-    ) = SlackAssignmentsNotifier(slackMethodsClient, properties, timeProvider)
+    ) = SlackAssessmentsNotifier(slackMethodsClient, properties, timeProvider)
 }

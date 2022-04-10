@@ -1,0 +1,37 @@
+{
+  "_embedded": {
+    "invitations": [
+      {
+        "id": "id1",
+        "_embedded": {
+          "candidate": {
+            "id": "candidateId1",
+            "status": "IN_EVALUATION"
+          },
+          "assessment": {
+            "id": "assesmentId1",
+            "status": "AUTO_ASSESSMENT_READY",
+            "score": {
+              "scoredPoints": 12,
+              "maxPoints": 39,
+              "percentage": 31
+            },
+            "finishDate": "2022-04-08T22:46:46Z",
+            "_embedded": {
+              "test": {
+                "id": "testIdPython",
+                "name": "Software Enginner (Python)"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "page": {
+    "size": 1,
+    "totalElements": 2,
+    "totalPages": 2,
+    "number": 0
+  }
+}

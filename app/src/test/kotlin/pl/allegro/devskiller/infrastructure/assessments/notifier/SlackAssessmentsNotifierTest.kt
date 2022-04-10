@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure
+package pl.allegro.devskiller.infrastructure.assessments.notifier
 
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
@@ -8,21 +8,23 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import pl.allegro.devskiller.config.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assignments.AssignmentsToEvaluate
-import pl.allegro.devskiller.domain.assignments.NotificationFailedException
+import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
+import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
+import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
+import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoDaysAgo
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class SlackAssignmentsNotifierTest {
+class SlackAssessmentsNotifierTest {
 
     private val slack = mockk<MethodsClient>(relaxed = true)
     private val notifier = SlackNotifierConfiguration(slackProps)
-        .slackAssignmentsNotifier(FixedTimeProvider(now), slack)
+        .slackAssessmentsNotifier(FixedTimeProvider(now), slack)
 
     @BeforeTest
     fun setup() {
@@ -32,10 +34,10 @@ class SlackAssignmentsNotifierTest {
     @Test
     fun `should send notification to slack`() {
         // given
-        val assignmentStats = AssignmentsToEvaluate(12, twoDaysAgo)
+        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
 
         // when
-        notifier.notify(assignmentStats)
+        notifier.notify(assessments)
 
         // then should call slack api
         verify(exactly = 1) { slack.chatPostMessage(ofType(ChatPostMessageRequest::class)) }
@@ -45,11 +47,11 @@ class SlackAssignmentsNotifierTest {
     @Test
     fun `slack notification should contain specific parameter values`() {
         // given
-        val assignmentStats = AssignmentsToEvaluate(12, twoDaysAgo)
+        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
         val request = slot<ChatPostMessageRequest>()
 
         // when
-        notifier.notify(assignmentStats)
+        notifier.notify(assessments)
 
         // then request should contain certain specific parameters
         verify { slack.chatPostMessage(capture(request)) }
@@ -58,7 +60,7 @@ class SlackAssignmentsNotifierTest {
             assertEquals(slackProps.token, it.token)
             assertEquals(slackProps.channel, it.channel)
             assertEquals(
-                "There are 12 assignments left to evaluate with the longest waiting candidate for 48 hours.",
+                "There are 12 assessments left to evaluate with the longest waiting candidate for 48 hours.",
                 it.text
             )
         }
@@ -68,11 +70,11 @@ class SlackAssignmentsNotifierTest {
     fun `should throw exception when response was not ok`() {
         // given
         val error = "dummy_error"
-        val assignmentStats = AssignmentsToEvaluate(12, twoDaysAgo)
+        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
         mockPostMessage(buildPostMessageResponse(ok = false, error = error))
 
         // when
-        val notify = { notifier.notify(assignmentStats) }
+        val notify = { notifier.notify(assessments) }
 
         // then
         val exception = assertFailsWith(NotificationFailedException::class, notify)
