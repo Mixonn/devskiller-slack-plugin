@@ -40,9 +40,7 @@ internal class DevskillerClientTest {
         // and assessments with id 1 should be parsed correctly
         val expectedAssessmentWithId1 = Assessment(
             id = "assesmentId1",
-            creationDate = Instant.parse("2022-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2022-04-08T21:28:25Z"),
             finishDate = Instant.parse("2022-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId1, result.first { it.id == "assesmentId1" })
@@ -50,9 +48,7 @@ internal class DevskillerClientTest {
         // and assessments with id 2 should be parsed correctly
         val expectedAssessmentWithId2 = Assessment(
             id = "assesmentId2",
-            creationDate = Instant.parse("2021-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2021-04-08T21:28:25Z"),
             finishDate = Instant.parse("2021-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId2, result.first { it.id == "assesmentId2" })
@@ -79,9 +75,7 @@ internal class DevskillerClientTest {
         // and assessments with id 1 should be parsed correctly
         val expectedAssessmentWithId1 = Assessment(
             id = "assesmentId1",
-            creationDate = Instant.parse("2022-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2022-04-08T21:28:25Z"),
             finishDate = Instant.parse("2022-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId1, result.first { it.id == "assesmentId1" })
@@ -89,9 +83,7 @@ internal class DevskillerClientTest {
         // and assessments with id 2 should be parsed correctly
         val expectedAssessmentWithId2 = Assessment(
             id = "assesmentId2",
-            creationDate = Instant.parse("2021-04-08T07:15:37Z"),
             testId = TestId("testIdPython"),
-            startDate = Instant.parse("2021-04-08T21:28:25Z"),
             finishDate = Instant.parse("2021-04-08T22:46:46Z")
         )
         assertEquals(expectedAssessmentWithId2, result.first { it.id == "assesmentId2" })

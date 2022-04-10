@@ -57,17 +57,13 @@ class DevSkillerClient(
     private fun InvitationAssessment.toAssessment() =
         Assessment(
             id = id,
-            creationDate = creationDate,
             testId = TestId(test.testId()),
-            startDate = startDate!!,
             finishDate = finishDate!!
         )
 
     private data class Invitation(val assessment: InvitationAssessment)
     private data class InvitationAssessment(
         val id: String,
-        val creationDate: Instant,
-        val startDate: Instant?,
         val finishDate: Instant?,
         @JsonProperty("_embedded") val test: InvitationTestWrapper
     )
@@ -84,4 +80,4 @@ class DevSkillerClient(
 }
 
 class DevskillerHttpException(val statusCode: Int, message: String)
-    : RuntimeException("Errror when calling devskiller client. Status code: $statusCode, message: $message")
+    : RuntimeException("Error when calling devskiller client. Status code: $statusCode, message: $message")

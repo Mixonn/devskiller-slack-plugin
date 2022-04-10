@@ -7,9 +7,7 @@ interface AssessmentsProvider {
 }
 data class Assessment(
     val id: String,
-    val creationDate: Instant,
     val testId: TestId,
-    val startDate: Instant,
     val finishDate: Instant
 )
 

@@ -6,10 +6,7 @@
         "_embedded": {
           "candidate": {
             "id": "candidateId2",
-            "firstName": "X",
-            "lastName": "Y",
-            "status": "IN_EVALUATION",
-            "creationDate": "2021-02-08T09:15:37+02:00"
+            "status": "IN_EVALUATION"
           },
           "assessment": {
             "id": "assesmentId2",
@@ -19,8 +16,6 @@
               "maxPoints": 39,
               "percentage": 31
             },
-            "creationDate": "2021-04-08T07:15:37Z",
-            "startDate": "2021-04-08T21:28:25Z",
             "finishDate": "2021-04-08T22:46:46Z",
             "_embedded": {
               "test": {
