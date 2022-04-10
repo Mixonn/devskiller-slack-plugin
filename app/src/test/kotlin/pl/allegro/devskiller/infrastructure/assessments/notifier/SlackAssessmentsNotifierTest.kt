@@ -3,11 +3,9 @@ package pl.allegro.devskiller.infrastructure.assessments.notifier
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import com.slack.api.methods.response.chat.ChatPostMessageResponse
-import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
-import io.mockk.verify
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
@@ -18,7 +16,6 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 class SlackAssessmentsNotifierTest {
 
@@ -40,8 +37,7 @@ class SlackAssessmentsNotifierTest {
         notifier.notify(assessments)
 
         // then should call slack api
-        verify(exactly = 1) { slack.chatPostMessage(ofType(ChatPostMessageRequest::class)) }
-        confirmVerified(slack)
+        slack.verifyMessageSent()
     }
 
     @Test
@@ -54,15 +50,11 @@ class SlackAssessmentsNotifierTest {
         notifier.notify(assessments)
 
         // then request should contain certain specific parameters
-        verify { slack.chatPostMessage(capture(request)) }
-        assertTrue(request.isCaptured)
+        slack.verifyMessageSent(request)
         request.captured.also {
             assertEquals(slackProps.token, it.token)
             assertEquals(slackProps.channel, it.channel)
-            assertEquals(
-                "There are 12 assessments left to evaluate with the longest waiting candidate for 48 hours.",
-                it.text
-            )
+            it shouldHaveText "There are 12 assessments left to evaluate with the longest waiting candidate for 48 hours."
         }
     }
 
