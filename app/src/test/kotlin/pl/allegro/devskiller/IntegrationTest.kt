@@ -1,10 +1,8 @@
 package pl.allegro.devskiller
 
-import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension
-import com.github.tomakehurst.wiremock.stubbing.StubMapping
+import com.slack.api.methods.MethodsClient
 import org.junit.jupiter.api.extension.RegisterExtension
-import pl.allegro.devskiller.infrastructure.assessments.notifier.slackOkResponse
 
 abstract class IntegrationTest {
 
@@ -12,6 +10,9 @@ abstract class IntegrationTest {
     @RegisterExtension
     val wiremock: WireMockExtension = WireMockExtension.newInstance().build()
 
-    protected fun stubAuth(): StubMapping =
-        wiremock.stubFor(WireMock.post("/auth.test").willReturn(WireMock.ok().withBody(slackOkResponse)))
+    val slackWiremock = SlackWiremock(wiremock)
+
+    protected fun MethodsClient.injectWiremockUrl() {
+        endpointUrlPrefix = "http://localhost:${wiremock.port}/"
+    }
 }
