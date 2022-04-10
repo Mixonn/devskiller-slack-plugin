@@ -18,7 +18,7 @@ data class AssessmentsInEvaluation(
     }
 }
 
-class NoAssessmentsToEvaluate: AssessmentsSummary {
+object NoAssessmentsToEvaluate: AssessmentsSummary {
 
     override fun getSummary(now: Instant): String {
         TODO("Not yet implemented")

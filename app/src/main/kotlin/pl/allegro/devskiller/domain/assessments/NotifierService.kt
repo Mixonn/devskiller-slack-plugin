@@ -18,11 +18,11 @@ class NotifierService(
 
     private fun List<Assessment>.toStatistics(): AssessmentsSummary =
         if (isEmpty()) {
-            NoAssessmentsToEvaluate()
+            NoAssessmentsToEvaluate
         } else {
             AssessmentsInEvaluation(
                 this.size,
-                this.minByOrNull { it.finishDate }!!.finishDate
+                this.minOf { it.finishDate }
             )
         }
 }
