@@ -5,7 +5,13 @@
 
 ## Run
 ```shell
-./gradlew run --args='--slackChannel "C01DTCUUH55" --slackToken "xoxb-1469436098135-3165783184564-mbeMlLdEZbn8TMPvXymcd6DG" --devskillerToken "<token>"'
+DEVSKILLER_TOKEN="<token>" SLACK_TOKEN="xoxb-1469436098135-3165783184564-mbeMlLdEZbn8TMPvXymcd6DG" ./gradlew run --args='--slackChannel "C01DTCUUH55"'
+```
+
+## Package
+```shell
+docker pull eclipse-temurin:17-jre
+./gradlew jibDockerBuild
 ```
 
 ## Slack integration

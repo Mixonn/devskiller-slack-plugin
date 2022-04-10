@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.6.10"
     application
+    id("com.google.cloud.tools.jib") version "3.2.1"
 }
 
 group = "pl.allegro.devskiller"
@@ -43,4 +44,13 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+jib {
+    from {
+        image = "docker://eclipse-temurin:17-jre"
+    }
+    to {
+        image = "${rootProject.name}:$version"
+    }
 }

@@ -10,10 +10,11 @@ import pl.allegro.devskiller.config.assessments.slack.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assessments.NotifierService
 
 fun main(args: Array<String>) {
+    val devskillerToken: String = readFromEnv("DEVSKILLER_TOKEN")
+    val slackToken: String = readFromEnv("SLACK_TOKEN")
+
     val parser = ArgParser("<this_executable>")
     val slackChannel by parser.option(ArgType.String).required()
-    val slackToken by parser.option(ArgType.String).required()
-    val devskillerToken by parser.option(ArgType.String).required()
     parser.parse(args)
 
     val devskillerProperties = DevSkillerProperties("https://api.devskiller.com/", devskillerToken)
@@ -27,3 +28,6 @@ fun main(args: Array<String>) {
     val notifierService = NotifierService(notifier, assessmentsProvider)
     notifierService.notifyAboutAssessmentsToCheck()
 }
+
+private fun readFromEnv(variableName: String): String =
+    System.getenv(variableName) ?: throw IllegalArgumentException("Missing env var: $variableName")
