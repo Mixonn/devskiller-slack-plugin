@@ -8,6 +8,12 @@
 ./gradlew run --args='--slackChannel "C01DTCUUH55" --slackToken "xoxb-1469436098135-3165783184564-mbeMlLdEZbn8TMPvXymcd6DG" --devskillerToken "<token>"'
 ```
 
+## Package
+```shell
+docker pull eclipse-temurin:17-jre
+./gradlew jibDockerBuild
+```
+
 ## Slack integration
 https://api.slack.com/authentication/basics#start
 - create an app
