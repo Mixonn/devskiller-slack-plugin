@@ -8,7 +8,7 @@ import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsSummary
 import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
 import pl.allegro.devskiller.domain.time.TimeProvider
 
-class SlackAssessmentsNotifier(
+internal class SlackAssessmentsNotifier(
     private val slackClient: MethodsClient,
     private val slackConfig: SlackNotifierProperties,
     private val timeProvider: TimeProvider,
