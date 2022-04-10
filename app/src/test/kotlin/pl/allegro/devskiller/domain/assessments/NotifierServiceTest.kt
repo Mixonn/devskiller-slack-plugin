@@ -4,14 +4,15 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
+import pl.allegro.devskiller.config.simpleJavaApplicationConfig
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsNotifier
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsSummary
-import pl.allegro.devskiller.domain.assessments.notifier.NoAssessmentsToEvaluate
 import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
 import pl.allegro.devskiller.domain.assessments.provider.assessmentAlmostTwoHoursAgo
 import pl.allegro.devskiller.domain.assessments.provider.assessmentOverTwoHoursAgo
 import pl.allegro.devskiller.domain.assessments.provider.assessmentTwoHoursAgo
+import pl.allegro.devskiller.domain.assessments.provider.simpleEmptyAssessmentSummary
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.overTwoHoursAgo
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoHoursAgo
 import kotlin.test.Test
@@ -23,7 +24,7 @@ class NotifierServiceTest {
 
     private val provider = mockk<AssessmentsProvider>()
     private val notifier = mockk<AssessmentsNotifier>(relaxed = true)
-    private val notifierService = NotifierService(notifier, provider)
+    private val notifierService = NotifierService(notifier, provider, simpleJavaApplicationConfig())
     private val assessmentsSummary = slot<AssessmentsSummary>()
 
     @Test
@@ -38,7 +39,7 @@ class NotifierServiceTest {
         verify(exactly = 1) { notifier.notify(capture(assessmentsSummary)) }
         assertTrue(assessmentsSummary.isCaptured)
         assessmentsSummary.captured.also {
-            assertEquals(NoAssessmentsToEvaluate, it)
+            assertEquals(simpleEmptyAssessmentSummary(), it)
         }
     }
 
@@ -55,7 +56,7 @@ class NotifierServiceTest {
         verify(exactly = 1) { notifier.notify(capture(assessmentsSummary)) }
         assertTrue(assessmentsSummary.isCaptured)
         assessmentsSummary.captured.also {
-            if (it !is AssessmentsInEvaluation) fail()
+            if (it !is AssessmentsInEvaluation) fail("Assessments should be empty")
             assertEquals(1, it.remaining)
             assertEquals(twoHoursAgo, it.oldest)
         }

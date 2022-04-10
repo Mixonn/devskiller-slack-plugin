@@ -19,8 +19,8 @@
             "finishDate": "2022-04-08T22:46:46Z",
             "_embedded": {
               "test": {
-                "id": "testIdPython",
-                "name": "Software Enginner (Python)"
+                "id": "java1TestId",
+                "name": "Software Engineer (Java)"
               }
             }
           }

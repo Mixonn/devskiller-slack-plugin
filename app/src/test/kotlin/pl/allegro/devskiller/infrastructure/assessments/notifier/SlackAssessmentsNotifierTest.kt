@@ -7,8 +7,8 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
+import pl.allegro.devskiller.domain.assessments.provider.simpleAssessmentInEvaluationSummary
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoDaysAgo
@@ -31,7 +31,7 @@ class SlackAssessmentsNotifierTest {
     @Test
     fun `should send notification to slack`() {
         // given
-        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
+        val assessments = simpleAssessmentInEvaluationSummary()
 
         // when
         notifier.notify(assessments)
@@ -43,7 +43,7 @@ class SlackAssessmentsNotifierTest {
     @Test
     fun `slack notification should contain specific parameter values`() {
         // given
-        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
+        val assessments = simpleAssessmentInEvaluationSummary(remaining = 12, oldest = twoDaysAgo)
         val request = slot<ChatPostMessageRequest>()
 
         // when
@@ -54,7 +54,7 @@ class SlackAssessmentsNotifierTest {
         request.captured.also {
             assertEquals(slackProps.token, it.token)
             assertEquals(slackProps.channel, it.channel)
-            it shouldHaveText "There are 12 assessments left to evaluate with the longest waiting candidate for 48 hours."
+            it shouldHaveText "There are 12 `java` assessments left to evaluate with the longest waiting candidate for *48* hours."
         }
     }
 
@@ -62,7 +62,7 @@ class SlackAssessmentsNotifierTest {
     fun `should throw exception when response was not ok`() {
         // given
         val error = "dummy_error"
-        val assessments = AssessmentsInEvaluation(12, twoDaysAgo)
+        val assessments = simpleAssessmentInEvaluationSummary()
         mockPostMessage(buildPostMessageResponse(ok = false, error = error))
 
         // when

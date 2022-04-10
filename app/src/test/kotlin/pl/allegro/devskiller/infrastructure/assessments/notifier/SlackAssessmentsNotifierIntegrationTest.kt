@@ -8,11 +8,10 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
-import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
+import pl.allegro.devskiller.domain.assessments.provider.simpleAssessmentInEvaluationSummary
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
-import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoDaysAgo
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
@@ -32,7 +31,7 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
     @Test
     fun `should send notification to slack`() {
         // given
-        val stats = AssessmentsInEvaluation(12, twoDaysAgo)
+        val stats = simpleAssessmentInEvaluationSummary()
         slackWiremock.stubPostMessage()
 
         // when
@@ -47,7 +46,7 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
         listOf(400, 500).map { slackResponseStatus ->
             dynamicTest("when slack responds with $slackResponseStatus") {
                 // given
-                val stats = AssessmentsInEvaluation(12, twoDaysAgo)
+                val stats = simpleAssessmentInEvaluationSummary()
                 slackWiremock.stubPostMessage(status(slackResponseStatus).withBody(slackErrorResponse))
 
                 // when
@@ -61,7 +60,7 @@ class SlackAssessmentsNotifierIntegrationTest : IntegrationTest() {
     @Test
     fun `should throw exception when response was not ok`() {
         // given
-        val stats = AssessmentsInEvaluation(12, twoDaysAgo)
+        val stats = simpleAssessmentInEvaluationSummary()
         slackWiremock.stubPostMessage(ok().withBody(slackErrorResponse))
 
         // when

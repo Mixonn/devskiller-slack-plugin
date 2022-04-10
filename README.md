@@ -5,7 +5,7 @@
 
 ## Run
 ```shell
-./gradlew run --args='--devskillerToken "<token>" --slackToken "<token>" --slackChannel "<channel>"'
+./gradlew run --args='--devskillerToken "<token>" --slackToken "<token>" --slackChannel "<channel>" --testGroups "java,1234;python,222,333,444"'
 ```
 
 ## Publish

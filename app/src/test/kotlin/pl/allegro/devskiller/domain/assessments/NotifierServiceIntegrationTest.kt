@@ -12,6 +12,8 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Test
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.ResourceUtils
+import pl.allegro.devskiller.config.assessments.ApplicationConfig
+import pl.allegro.devskiller.config.assessments.TestGroups
 import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
 import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
@@ -34,7 +36,7 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
     private val assessmentConfiguration = DevskillerConfiguration(devSkillerProperties)
     private val assessmentsProvider = assessmentConfiguration.assessmentsProvider()
 
-    private val notifierService = NotifierService(notifier, assessmentsProvider)
+    private val notifierService = NotifierService(notifier, assessmentsProvider, applicationConfig)
 
     @BeforeTest
     fun setup() {
@@ -57,7 +59,7 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
 
         // and notification has specific message
         slack.verifyMessageSent(slackNotifyRequest)
-        slackNotifyRequest.captured shouldHaveText "There are 2 assessments left to evaluate with the longest waiting candidate for 6947 hours."
+        slackNotifyRequest.captured shouldHaveText "There are 2 `java` assessments left to evaluate with the longest waiting candidate for *6947* hours."
     }
 
     @Test
@@ -74,7 +76,7 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
 
         // and notification has specific message
         slack.verifyMessageSent(slackNotifyRequest)
-        slackNotifyRequest.captured shouldHaveText "🎉 There's nothing to evaluate. Good job!"
+        slackNotifyRequest.captured shouldHaveText "🎉 There's nothing to evaluate for `java`. Good job!"
     }
 
     private fun responseWithTwoInvitations() =
