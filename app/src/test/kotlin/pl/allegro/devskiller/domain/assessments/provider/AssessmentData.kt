@@ -5,8 +5,8 @@ import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.overTwoHour
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.twoHoursAgo
 
 private val testId = TestId("testId")
-val assessmentTwoHoursAgo = Assessment("id twoHoursAgo", twoHoursAgo, testId, twoHoursAgo, twoHoursAgo)
+val assessmentTwoHoursAgo = Assessment("id twoHoursAgo", testId, twoHoursAgo)
 val assessmentOverTwoHoursAgo =
-    Assessment("id overTwoHoursAgo", overTwoHoursAgo, testId, overTwoHoursAgo, overTwoHoursAgo)
+    Assessment("id overTwoHoursAgo", testId, overTwoHoursAgo)
 val assessmentAlmostTwoHoursAgo =
-    Assessment("id overTwoHoursAgo", almostTwoHoursAgo, testId, almostTwoHoursAgo, almostTwoHoursAgo)
+    Assessment("id overTwoHoursAgo", testId, almostTwoHoursAgo)
