@@ -21,8 +21,7 @@ internal class DevskillerClientTest {
 
     private val httpClient = mockk<HttpClient>()
     private val devSkillerProperties = DevSkillerProperties("http://localhost:1234", "api-token")
-    private val objectMapper = DevskillerConfiguration().objectMapper()
-    private val devSkillerClient = DevSkillerClient(httpClient, devSkillerProperties, objectMapper)
+    private val devSkillerClient = DevskillerConfiguration(devSkillerProperties).assessmentsProvider(httpClient)
 
     @Test
     fun `should fetch candidates`() {

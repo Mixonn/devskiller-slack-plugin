@@ -25,8 +25,8 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
 
     private val devSkillerProperties = DevSkillerProperties("", "token")
 
-    private val assessmentConfiguration = DevskillerConfiguration()
-    private val assessmentsProvider = assessmentConfiguration.assessmentsProvider(devSkillerProperties = devSkillerProperties)
+    private val assessmentConfiguration = DevskillerConfiguration(devSkillerProperties)
+    private val assessmentsProvider = assessmentConfiguration.assessmentsProvider()
 
     private val notifierService = NotifierService(notifier, assessmentsProvider)
 

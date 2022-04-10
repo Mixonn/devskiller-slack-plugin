@@ -4,7 +4,9 @@
 `./gradlew clean build`
 
 ## Run
-`./gradlew run`
+```shell
+./gradlew run --args='--slackChannel "C01DTCUUH55" --slackToken "xoxb-1469436098135-3165783184564-mbeMlLdEZbn8TMPvXymcd6DG" --devskillerToken "<token>"'
+```
 
 ## Slack integration
 https://api.slack.com/authentication/basics#start
