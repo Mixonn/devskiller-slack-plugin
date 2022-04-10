@@ -1,17 +1,13 @@
 package pl.allegro.devskiller
 
-import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
-import pl.allegro.devskiller.config.assessments.SlackNotifierProperties
-import pl.allegro.devskiller.config.assessments.AssessmentsConfiguration
-import pl.allegro.devskiller.config.assessments.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
+import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.slack.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assessments.NotifierService
 
 fun main() {
-    val configuration = AssessmentsConfiguration()
-    val candidateProvider = configuration.assessmentsProvider(
-        httpClient = configuration.httpClient(),
-        devSkillerProperties = DevSkillerProperties("https://api.devskiller.com/", "CHANGE_ME")
-    )
+    val configuration = DevskillerConfiguration()
+    val candidateProvider = configuration.assessmentsProvider()
 
     val slackProperties = SlackNotifierProperties(
         "C01DTCUUH55",

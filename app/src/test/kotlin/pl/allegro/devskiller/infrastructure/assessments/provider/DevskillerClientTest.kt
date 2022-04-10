@@ -9,8 +9,8 @@ import java.time.Instant
 import org.junit.jupiter.api.assertThrows
 import pl.allegro.devskiller.FakeHttpResponse
 import pl.allegro.devskiller.ResourceUtils
-import pl.allegro.devskiller.config.assessments.AssessmentsConfiguration
-import pl.allegro.devskiller.config.assessments.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
 import pl.allegro.devskiller.domain.assessments.provider.Assessment
 import pl.allegro.devskiller.domain.assessments.provider.TestId
 import kotlin.test.Test
@@ -21,7 +21,7 @@ internal class DevskillerClientTest {
 
     private val httpClient = mockk<HttpClient>()
     private val devSkillerProperties = DevSkillerProperties("http://localhost:1234", "api-token")
-    private val objectMapper = AssessmentsConfiguration().objectMapper()
+    private val objectMapper = DevskillerConfiguration().objectMapper()
     private val devSkillerClient = DevSkillerClient(httpClient, devSkillerProperties, objectMapper)
 
     @Test

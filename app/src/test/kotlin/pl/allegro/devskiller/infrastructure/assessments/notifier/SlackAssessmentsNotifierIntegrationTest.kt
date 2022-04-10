@@ -7,7 +7,7 @@ import com.slack.api.methods.SlackApiException
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import pl.allegro.devskiller.IntegrationTest
-import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.NotificationFailedException
 import pl.allegro.devskiller.domain.time.FixedTimeProvider

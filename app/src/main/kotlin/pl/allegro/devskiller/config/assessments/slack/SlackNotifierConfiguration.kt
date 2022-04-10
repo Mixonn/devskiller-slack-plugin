@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.config.assessments
+package pl.allegro.devskiller.config.assessments.slack
 
 import com.slack.api.bolt.App
 import com.slack.api.methods.MethodsClient

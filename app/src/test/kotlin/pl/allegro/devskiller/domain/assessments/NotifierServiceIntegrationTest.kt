@@ -9,9 +9,9 @@ import com.slack.api.bolt.App
 import org.junit.jupiter.api.Test
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.ResourceUtils
-import pl.allegro.devskiller.config.assessments.AssessmentsConfiguration
-import pl.allegro.devskiller.config.assessments.DevSkillerProperties
-import pl.allegro.devskiller.config.assessments.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
+import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
+import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
 import pl.allegro.devskiller.infrastructure.assessments.notifier.slackProps
@@ -23,10 +23,10 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
     private val notifier = SlackNotifierConfiguration(slackProps)
         .slackAssessmentsNotifier(FixedTimeProvider(now), slack)
 
-    private val assessmentConfiguration = AssessmentsConfiguration()
     private val devSkillerProperties = DevSkillerProperties("", "token")
-    private val assessmentsProvider =
-        assessmentConfiguration.assessmentsProvider(devSkillerProperties = devSkillerProperties)
+
+    private val assessmentConfiguration = DevskillerConfiguration()
+    private val assessmentsProvider = assessmentConfiguration.assessmentsProvider(devSkillerProperties = devSkillerProperties)
 
     private val notifierService = NotifierService(notifier, assessmentsProvider)
 
