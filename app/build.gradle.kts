@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.6.10"
     application
-    id("com.google.cloud.tools.jib") version "3.2.1"
+    `maven-publish`
 }
 
 group = "pl.allegro.devskiller"
@@ -23,7 +23,6 @@ val wiremockVersion = "2.32.0"
 val mockkVersion = "1.12.2"
 val jacksonVersion = "2.13.1"
 val kotlinCliVersion = "0.3.4"
-val ktorVersion = "2.0.0"
 
 dependencies {
     implementation(platform(kotlin("bom")))
@@ -34,8 +33,6 @@ dependencies {
     implementation("com.slack.api:bolt:$boltVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
-    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
     testImplementation(kotlin("test-junit5"))
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("com.github.tomakehurst:wiremock-jre8:$wiremockVersion")
@@ -49,11 +46,11 @@ tasks.test {
     useJUnitPlatform()
 }
 
-jib {
-    from {
-        image = "docker://eclipse-temurin:17-jre"
-    }
-    to {
-        image = "${rootProject.name}:$version"
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = rootProject.name
+            from(components["java"])
+        }
     }
 }

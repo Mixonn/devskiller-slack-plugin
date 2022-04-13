@@ -14,7 +14,7 @@ import pl.allegro.devskiller.domain.assessments.provider.Assessment
 import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
 import pl.allegro.devskiller.domain.assessments.provider.TestId
 
-class DevSkillerClient(
+internal class DevSkillerClient(
     private val httpClient: HttpClient,
     private val devSkillerConfiguration: DevSkillerProperties,
     private val objectMapper: ObjectMapper
