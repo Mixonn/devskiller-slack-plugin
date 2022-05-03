@@ -36,6 +36,7 @@ dependencies {
     testImplementation(kotlin("test-junit5"))
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("com.github.tomakehurst:wiremock-jre8:$wiremockVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
 }
 
 application {

@@ -14,7 +14,11 @@ class TestGroups(
 ) {
     private val testIds = kotlin.run {
         val result = mutableMapOf<TestId, TestDefinition>()
-        tests.forEach { (testDefinition, testsIds) -> testsIds.forEach { testId -> result[testId] = testDefinition } }
+        tests.forEach { (testDefinition, testsIds) ->
+            testsIds.forEach { testId ->
+                result[testId] = testDefinition
+            }
+        }
         return@run result.toMap()
     }
 
@@ -23,15 +27,11 @@ class TestGroups(
     fun getAllTests() = tests
 
     companion object {
-        fun fromString(groupsString: String): TestGroups {
-            val testIds = mutableMapOf<TestDefinition, List<TestId>>()
-            val groups =  groupsString.split(";").map { groupString ->
-                val splitGroup: Queue<String> = LinkedList(groupString.split(","))
-                val testDefinition = TestDefinition(splitGroup.poll())
-                testIds[testDefinition] = splitGroup.map { TestId(it) }
-            }
-            return TestGroups(testIds.toMap())
-        }
+        fun fromString(groupsString: String): TestGroups = groupsString.split(";").associate { groupString ->
+            val splittedGroupString: Queue<String> = LinkedList(groupString.split(","))
+            val testDefinition = TestDefinition(splittedGroupString.poll())
+            testDefinition to splittedGroupString.map { TestId(it) }
+        }.filter { it.key.name.isNotBlank() }.let { TestGroups(it) }
     }
 }
 
