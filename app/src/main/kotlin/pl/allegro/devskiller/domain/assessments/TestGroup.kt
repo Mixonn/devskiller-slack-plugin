@@ -22,9 +22,9 @@ class TestGroups(
 
     fun getTestGroup(testId: TestId): TestGroup? = testIds[testId]
 
-    fun getAllTests() = tests
-
     fun groups() = tests.keys
+
+    fun getAllGroupedTests() = tests
 }
 
-data class TestGroup(val name: String)
+data class TestGroup(val name: String, val notifyGroupName: String? = null) {}

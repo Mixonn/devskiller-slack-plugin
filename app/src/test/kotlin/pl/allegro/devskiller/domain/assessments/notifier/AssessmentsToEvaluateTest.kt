@@ -1,7 +1,9 @@
 package pl.allegro.devskiller.domain.assessments.notifier
 
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import pl.allegro.devskiller.domain.assessments.TestGroup
 import pl.allegro.devskiller.domain.assessments.provider.simpleAssessmentInEvaluationSummary
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.almostTwoHoursAgo
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
@@ -29,6 +31,19 @@ class AssessmentsToEvaluateTest {
             // then
             assertEquals(buildSummary(hours = expectedHours), summary)
         }
+    }
+
+    @Test
+    fun `should create valid message with notification group mention`() {
+        // given
+        val assessments = AssessmentsInEvaluation(TestGroup("java", "S123H"), 14, twoHoursAgo)
+
+        // when
+        val summary = assessments.getSummary(now)
+
+        // then
+        val notificationString = "<!subteam^S123H>"
+        assertEquals("$notificationString ${buildSummary(hours = 2)}", summary)
     }
 
     private fun buildSummary(hours: Int) =

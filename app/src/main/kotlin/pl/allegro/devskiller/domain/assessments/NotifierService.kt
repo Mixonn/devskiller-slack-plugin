@@ -15,6 +15,7 @@ class NotifierService(
     fun notifyAboutAssessmentsToCheck() {
         val groupedAssessments: Map<TestGroup?, List<Assessment>> = assessmentsProvider.getAssessmentsToEvaluate()
             .groupBy { applicationConfig.testGroups.getTestGroup(it.testId) }
+            .filter { it.key != null }
         applicationConfig.testGroups.groups().forEach { group ->
             assessmentsNotifier.notify(groupedAssessments[group].toSummary(group))
         }

@@ -1,6 +1,7 @@
 package pl.allegro.devskiller.config.assessments
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.provider.ValueSource
 import pl.allegro.devskiller.domain.assessments.TestGroup
 import pl.allegro.devskiller.domain.assessments.provider.TestId
 import pl.allegro.devskiller.config.assessments.devskiller.TestGroupsBuilder
@@ -14,7 +15,7 @@ internal class TestGroupsBuilderTest {
         // when
         val groups = TestGroupsBuilder.fromString("jvm,1,2,3")
         // then
-        groups.getAllTests().apply {
+        groups.getAllGroupedTests().apply {
             assertEquals(1, size)
             assertEquals(
                 expected = this[TestGroup("jvm")],
@@ -28,7 +29,7 @@ internal class TestGroupsBuilderTest {
         // when
         val groups = TestGroupsBuilder.fromString("jvm,1,2,3;python,11;php,100,101")
         // then
-        groups.getAllTests().apply {
+        groups.getAllGroupedTests().apply {
             assertEquals(3, size)
             assertEquals(
                 expected = listOf(TestId("1"), TestId("2"), TestId("3")),
@@ -50,7 +51,7 @@ internal class TestGroupsBuilderTest {
         // when
         val groups = TestGroupsBuilder.fromString(";;")
         // then
-        groups.getAllTests().apply {
+        groups.getAllGroupedTests().apply {
             assertEquals(expected = 0, actual = size)
         }
     }
@@ -71,6 +72,17 @@ internal class TestGroupsBuilderTest {
         assertEquals(
             expected = TestGroup(name = "php"),
             actual = groups.getTestGroup(TestId("101"))
+        )
+    }
+
+    @Test
+    fun `should detect valid notify group name`() {
+        // when
+        val groups = TestGroupsBuilder.fromString("jvm,@all,1")
+        // then
+        assertEquals(
+            expected = TestGroup(name = "jvm", "all"),
+            actual = groups.getTestDefinition(TestId("1"))
         )
     }
 
