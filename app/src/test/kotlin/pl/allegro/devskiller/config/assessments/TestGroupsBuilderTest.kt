@@ -82,7 +82,7 @@ internal class TestGroupsBuilderTest {
         // then
         assertEquals(
             expected = TestGroup(name = "jvm", "all"),
-            actual = groups.getTestDefinition(TestId("1"))
+            actual = groups.getTestGroup(TestId("1"))
         )
     }
 

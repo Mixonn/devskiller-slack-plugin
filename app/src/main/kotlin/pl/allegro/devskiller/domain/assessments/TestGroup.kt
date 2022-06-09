@@ -27,4 +27,4 @@ class TestGroups(
     fun getAllGroupedTests() = tests
 }
 
-data class TestGroup(val name: String, val notifyGroupName: String? = null) {}
+data class TestGroup(val name: String, val notifyGroupName: String? = null)
