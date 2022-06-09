@@ -3,7 +3,7 @@ package pl.allegro.devskiller.config.assessments
 import org.junit.jupiter.api.Test
 import pl.allegro.devskiller.domain.assessments.TestGroup
 import pl.allegro.devskiller.domain.assessments.provider.TestId
-import pl.allegro.devskiller.infrastructure.assessments.TestGroupsBuilder
+import pl.allegro.devskiller.config.assessments.devskiller.TestGroupsBuilder
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 

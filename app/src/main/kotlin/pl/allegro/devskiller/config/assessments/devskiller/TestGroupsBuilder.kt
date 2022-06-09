@@ -1,4 +1,4 @@
-package pl.allegro.devskiller.infrastructure.assessments
+package pl.allegro.devskiller.config.assessments.devskiller
 
 import java.util.LinkedList
 import java.util.Queue

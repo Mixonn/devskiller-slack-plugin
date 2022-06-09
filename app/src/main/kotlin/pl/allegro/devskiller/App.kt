@@ -9,7 +9,7 @@ import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfigurati
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assessments.NotifierService
-import pl.allegro.devskiller.infrastructure.assessments.TestGroupsBuilder
+import pl.allegro.devskiller.config.assessments.devskiller.TestGroupsBuilder
 
 fun main(args: Array<String>) {
     val parser = ArgParser("<this_executable>")
