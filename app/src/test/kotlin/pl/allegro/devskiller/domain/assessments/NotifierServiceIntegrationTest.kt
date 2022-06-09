@@ -64,6 +64,23 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
     }
 
     @Test
+    fun `should omit the tests with unknown test IDs`() {
+        // given
+        devskillerWillReturn("/invitations(.*)", responseWithUnknownTestIds())
+        slackWiremock.stubPostMessage()
+
+        // when
+        notifierService.notifyAboutAssessmentsToCheck()
+
+        // then message with notification was sent
+        slackWiremock.verifyNotificationSent()
+
+        // and notification has specific message
+        slack.verifyMessageSent(slackNotifyRequest)
+        slackNotifyRequest.captured shouldHaveText "🎉 There's nothing to evaluate for `java`. Good job!"
+    }
+
+    @Test
     fun `should notify when there are no assessments in evaluation`() {
         // given
         devskillerWillReturn("/invitations(.*)", devskillerEmptyResponse())
@@ -82,6 +99,9 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
 
     private fun responseWithTwoInvitations() =
         ok().withBody(ResourceUtils.getResourceString("invitationsTotal2Size2Page0.json"))
+
+    private fun responseWithUnknownTestIds() =
+        ok().withBody(ResourceUtils.getResourceString("invitationsWithUnknownTestIds.json"))
 
     private fun devskillerEmptyResponse() =
         ok().withBody(ResourceUtils.getResourceString("invitationsEmpty.json"))
