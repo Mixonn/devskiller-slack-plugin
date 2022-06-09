@@ -56,7 +56,7 @@ class NotifierServiceTest {
         verify(exactly = 1) { notifier.notify(capture(assessmentsSummary)) }
         assertTrue(assessmentsSummary.isCaptured)
         assessmentsSummary.captured.also {
-            if (it !is AssessmentsInEvaluation) fail("Assessments should be empty")
+            if (it !is AssessmentsInEvaluation) fail("Assessments should not be empty")
             assertEquals(1, it.remaining)
             assertEquals(twoHoursAgo, it.oldest)
         }

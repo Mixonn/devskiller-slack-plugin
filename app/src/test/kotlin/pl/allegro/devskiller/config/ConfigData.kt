@@ -1,11 +1,12 @@
 package pl.allegro.devskiller.config
 
-import pl.allegro.devskiller.config.assessments.ApplicationConfig
-import pl.allegro.devskiller.config.assessments.TestDefinition
-import pl.allegro.devskiller.config.assessments.TestGroups
+import pl.allegro.devskiller.domain.assessments.ApplicationConfig
+import pl.allegro.devskiller.domain.assessments.TestGroup
+import pl.allegro.devskiller.domain.assessments.TestGroups
 import pl.allegro.devskiller.domain.assessments.provider.JAVA_1_TEST_ID
 
 fun simpleJavaApplicationConfig() = ApplicationConfig(
     TestGroups(
-    mapOf(Pair(TestDefinition("java"), listOf(JAVA_1_TEST_ID)))
-))
+        mapOf(TestGroup("java") to listOf(JAVA_1_TEST_ID))
+    )
+)

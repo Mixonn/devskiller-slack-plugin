@@ -12,11 +12,10 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Test
 import pl.allegro.devskiller.IntegrationTest
 import pl.allegro.devskiller.ResourceUtils
-import pl.allegro.devskiller.config.assessments.ApplicationConfig
-import pl.allegro.devskiller.config.assessments.TestGroups
 import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
 import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
+import pl.allegro.devskiller.config.simpleJavaApplicationConfig
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
 import pl.allegro.devskiller.infrastructure.assessments.notifier.shouldHaveText
@@ -25,6 +24,8 @@ import pl.allegro.devskiller.infrastructure.assessments.notifier.verifyMessageSe
 import kotlin.test.BeforeTest
 
 internal class NotifierServiceIntegrationTest : IntegrationTest() {
+
+    private val applicationConfig = simpleJavaApplicationConfig()
 
     private val slack = spyk(App().client)
     private val notifier = SlackNotifierConfiguration(slackProps)

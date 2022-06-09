@@ -1,7 +1,5 @@
 package pl.allegro.devskiller.domain.assessments
 
-import pl.allegro.devskiller.config.assessments.ApplicationConfig
-import pl.allegro.devskiller.config.assessments.TestDefinition
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsInEvaluation
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsNotifier
 import pl.allegro.devskiller.domain.assessments.notifier.AssessmentsSummary
@@ -15,20 +13,20 @@ class NotifierService(
     private val applicationConfig: ApplicationConfig
 ) {
     fun notifyAboutAssessmentsToCheck() {
-        val groupedAssessments = assessmentsProvider.getAssessmentsToEvaluate()
+        val groupedAssessments: Map<TestGroup?, List<Assessment>> = assessmentsProvider.getAssessmentsToEvaluate()
             .groupBy { applicationConfig.testGroups.getTestDefinition(it.testId) }
             .filter { it.key != null }
-        applicationConfig.testGroups.getAllTests().forEach { (group, _) ->
-            assessmentsNotifier.notify(groupedAssessments[group].toStatistics(group))
+        applicationConfig.testGroups.groups().forEach { group ->
+            assessmentsNotifier.notify(groupedAssessments[group].toSummary(group))
         }
     }
 
-    private fun List<Assessment>?.toStatistics(testDefinition: TestDefinition): AssessmentsSummary =
+    private fun List<Assessment>?.toSummary(testGroup: TestGroup): AssessmentsSummary =
         if (this.isNullOrEmpty()) {
-            NoAssessmentsToEvaluate(testDefinition)
+            NoAssessmentsToEvaluate(testGroup)
         } else {
             AssessmentsInEvaluation(
-                testDefinition,
+                testGroup,
                 this.size,
                 this.minOf { it.finishDate }
             )

@@ -3,13 +3,13 @@ package pl.allegro.devskiller
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.required
-import pl.allegro.devskiller.config.assessments.ApplicationConfig
-import pl.allegro.devskiller.config.assessments.TestGroups
+import pl.allegro.devskiller.domain.assessments.ApplicationConfig
 import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
 import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierProperties
 import pl.allegro.devskiller.domain.assessments.NotifierService
+import pl.allegro.devskiller.infrastructure.assessments.TestGroupsBuilder
 
 fun main(args: Array<String>) {
     val parser = ArgParser("<this_executable>")
@@ -37,6 +37,6 @@ fun main(args: Array<String>) {
     val slackConfig = SlackNotifierConfiguration(slackProperties)
     val notifier = slackConfig.slackAssessmentsNotifier()
 
-    val notifierService = NotifierService(notifier, assessmentsProvider, ApplicationConfig(TestGroups.fromString(testGroupsString)))
+    val notifierService = NotifierService(notifier, assessmentsProvider, ApplicationConfig(TestGroupsBuilder.fromString(testGroupsString)))
     notifierService.notifyAboutAssessmentsToCheck()
 }
