@@ -7,6 +7,7 @@ import pl.allegro.devskiller.domain.assessments.provider.JAVA_1_TEST_ID
 
 fun simpleJavaApplicationConfig() = ApplicationConfig(
     TestGroups(
-        mapOf(TestGroup("java") to listOf(JAVA_1_TEST_ID))
+        mapOf(
+            TestGroup("java") to listOf(JAVA_1_TEST_ID))
+        )
     )
-)

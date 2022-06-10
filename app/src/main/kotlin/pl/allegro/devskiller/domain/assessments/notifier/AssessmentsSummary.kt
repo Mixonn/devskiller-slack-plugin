@@ -16,7 +16,14 @@ data class AssessmentsInEvaluation(
 
     override fun getSummary(now: Instant): String {
         val longestWaitingHours = Duration.between(oldest, now).toHours()
-        return "There are $remaining `${testGroup.name}` assessments left to evaluate with the longest waiting candidate for *$longestWaitingHours* hours."
+        return "${testGroup.getNotificationGroupString()?.plus(" ") ?: ""}There are $remaining `${testGroup.name}` assessments left to evaluate with the longest waiting candidate for *$longestWaitingHours* hours."
+    }
+
+    private fun TestGroup.getNotificationGroupString(): String? {
+        if(notifyGroupName == null) {
+            return null
+        }
+        return "<!subteam^${notifyGroupName}>"
     }
 }
 

@@ -16,6 +16,7 @@ import pl.allegro.devskiller.config.assessments.devskiller.DevSkillerProperties
 import pl.allegro.devskiller.config.assessments.devskiller.DevskillerConfiguration
 import pl.allegro.devskiller.config.assessments.slack.SlackNotifierConfiguration
 import pl.allegro.devskiller.config.simpleJavaApplicationConfig
+import pl.allegro.devskiller.domain.assessments.provider.JAVA_1_TEST_ID
 import pl.allegro.devskiller.domain.time.FixedTimeProvider
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
 import pl.allegro.devskiller.infrastructure.assessments.notifier.shouldHaveText
@@ -95,6 +96,34 @@ internal class NotifierServiceIntegrationTest : IntegrationTest() {
         // and notification has specific message
         slack.verifyMessageSent(slackNotifyRequest)
         slackNotifyRequest.captured shouldHaveText "🎉 There's nothing to evaluate for `java`. Good job!"
+    }
+
+    @Test
+    fun `should mention group when is available`() {
+        // given
+        devskillerWillReturn("/invitations(.*)", responseWithTwoInvitations())
+        slackWiremock.stubPostMessage()
+        val customNotifierServiceWithMentionGroup = NotifierService(
+            notifier,
+            assessmentsProvider,
+            ApplicationConfig(
+                TestGroups(
+                    mapOf(
+                        Pair(TestGroup("java", "S123H"), listOf(JAVA_1_TEST_ID))
+                    )
+                )
+            )
+        )
+
+        // when
+        customNotifierServiceWithMentionGroup.notifyAboutAssessmentsToCheck()
+
+        // then message with notification was sent
+        slackWiremock.verifyNotificationSent { withRequestBody(containing("assessments")) }
+
+        // and notification has specific message
+        slack.verifyMessageSent(slackNotifyRequest)
+        slackNotifyRequest.captured shouldHaveText "<!subteam^S123H> There are 2 `java` assessments left to evaluate with the longest waiting candidate for *6947* hours."
     }
 
     private fun responseWithTwoInvitations() =
