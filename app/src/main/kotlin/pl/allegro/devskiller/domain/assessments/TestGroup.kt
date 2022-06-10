@@ -1,7 +1,5 @@
 package pl.allegro.devskiller.domain.assessments
 
-import java.util.LinkedList
-import java.util.Queue
 import pl.allegro.devskiller.domain.assessments.provider.TestId
 
 
@@ -14,15 +12,15 @@ class TestGroups(
 ) {
     private val testIds = kotlin.run {
         val result = mutableMapOf<TestId, TestGroup>()
-        tests.forEach { (testDefinition, testsIds) ->
+        tests.forEach { (testGroup, testsIds) ->
             testsIds.forEach { testId ->
-                result[testId] = testDefinition
+                result[testId] = testGroup
             }
         }
         return@run result.toMap()
     }
 
-    fun getTestDefinition(testId: TestId): TestGroup? = testIds[testId]
+    fun getTestGroup(testId: TestId): TestGroup? = testIds[testId]
 
     fun getAllTests() = tests
 

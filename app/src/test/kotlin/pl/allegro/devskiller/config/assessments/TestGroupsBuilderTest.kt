@@ -7,7 +7,7 @@ import pl.allegro.devskiller.config.assessments.devskiller.TestGroupsBuilder
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-internal class TestGroupsTest {
+internal class TestGroupsBuilderTest {
 
     @Test
     fun `should detect 1 group with 3 tests`() {
@@ -56,29 +56,29 @@ internal class TestGroupsTest {
     }
 
     @Test
-    fun `should return valid testDefinition`() {
+    fun `should return valid testGroup`() {
         // when
         val groups = TestGroupsBuilder.fromString("jvm,1;python,11;php,101")
         // then
         assertEquals(
             expected = TestGroup(name = "jvm"),
-            actual = groups.getTestDefinition(TestId("1"))
+            actual = groups.getTestGroup(TestId("1"))
         )
         assertEquals(
             expected = TestGroup(name = "python"),
-            actual = groups.getTestDefinition(TestId("11"))
+            actual = groups.getTestGroup(TestId("11"))
         )
         assertEquals(
             expected = TestGroup(name = "php"),
-            actual = groups.getTestDefinition(TestId("101"))
+            actual = groups.getTestGroup(TestId("101"))
         )
     }
 
     @Test
-    fun `should return null testDefinition whe not found`() {
+    fun `should return null testGroup whe not found`() {
         // when
         val groups = TestGroupsBuilder.fromString("jvm,1;python,11;php,101")
         // then
-        assertNull(groups.getTestDefinition(TestId("9999")))
+        assertNull(groups.getTestGroup(TestId("9999")))
     }
 }
