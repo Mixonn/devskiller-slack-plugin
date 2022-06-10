@@ -2,6 +2,7 @@ package pl.allegro.devskiller.domain.assessments.notifier
 
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
+import pl.allegro.devskiller.domain.assessments.provider.simpleAssessmentInEvaluationSummary
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.almostTwoHoursAgo
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.now
 import pl.allegro.devskiller.domain.time.FixedTimeProvider.Companion.overTwoHoursAgo
@@ -20,7 +21,7 @@ class AssessmentsToEvaluateTest {
     ).map { (oldest, expectedHours) ->
         dynamicTest("returns $expectedHours when oldest is $oldest") {
             // given
-            val assessments = AssessmentsInEvaluation(14, oldest)
+            val assessments = simpleAssessmentInEvaluationSummary(oldest = oldest, remaining = 14)
 
             // when
             val summary = assessments.getSummary(now)
@@ -31,5 +32,5 @@ class AssessmentsToEvaluateTest {
     }
 
     private fun buildSummary(hours: Int) =
-        "There are 14 assessments left to evaluate with the longest waiting candidate for $hours hours."
+        "There are 14 `java` assessments left to evaluate with the longest waiting candidate for *$hours* hours."
 }

@@ -9,18 +9,23 @@ import pl.allegro.devskiller.domain.assessments.provider.AssessmentsProvider
 
 class NotifierService(
     private val assessmentsNotifier: AssessmentsNotifier,
-    private val assessmentsProvider: AssessmentsProvider
+    private val assessmentsProvider: AssessmentsProvider,
+    private val applicationConfig: ApplicationConfig
 ) {
     fun notifyAboutAssessmentsToCheck() {
-        val assessments = assessmentsProvider.getAssessmentsToEvaluate()
-        assessmentsNotifier.notify(assessments.toStatistics())
+        val groupedAssessments: Map<TestGroup?, List<Assessment>> = assessmentsProvider.getAssessmentsToEvaluate()
+            .groupBy { applicationConfig.testGroups.getTestGroup(it.testId) }
+        applicationConfig.testGroups.groups().forEach { group ->
+            assessmentsNotifier.notify(groupedAssessments[group].toSummary(group))
+        }
     }
 
-    private fun List<Assessment>.toStatistics(): AssessmentsSummary =
-        if (isEmpty()) {
-            NoAssessmentsToEvaluate
+    private fun List<Assessment>?.toSummary(testGroup: TestGroup): AssessmentsSummary =
+        if (this.isNullOrEmpty()) {
+            NoAssessmentsToEvaluate(testGroup)
         } else {
             AssessmentsInEvaluation(
+                testGroup,
                 this.size,
                 this.minOf { it.finishDate }
             )

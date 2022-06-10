@@ -23,6 +23,7 @@ val wiremockVersion = "2.32.0"
 val mockkVersion = "1.12.2"
 val jacksonVersion = "2.13.1"
 val kotlinCliVersion = "0.3.4"
+val junitVersion = "5.8.1"
 
 dependencies {
     implementation(platform(kotlin("bom")))
@@ -36,6 +37,7 @@ dependencies {
     testImplementation(kotlin("test-junit5"))
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("com.github.tomakehurst:wiremock-jre8:$wiremockVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
 }
 
 application {
